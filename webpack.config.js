@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const tsRule = {
   test: /\.ts(x?)$/,
@@ -11,7 +11,7 @@ const tsRule = {
 
 const plugins = [
   new HTMLWebpackPlugin({
-    template: 'src/popup-page/popup.html',
+    template: './src/popup.html',
     filename: 'popup.html',
     chunks: ['popup'],
   }),
@@ -24,7 +24,7 @@ const plugins = [
 module.exports = {
   mode: 'production',
   entry: {
-    popup: './src/popup-page/popup.tsx',
+    popup: './src/popup.tsx',
   },
   output: {
     filename: '[name].js',
