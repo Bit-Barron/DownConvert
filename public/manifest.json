@@ -12,7 +12,7 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": "[content.js]"
+      "js": ["content.js"]
     }
   ],
   "icons": {
@@ -20,5 +20,5 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "permissions": ["activeTab"]
+  "host_permissions": ["<all_urls>"]
 }
