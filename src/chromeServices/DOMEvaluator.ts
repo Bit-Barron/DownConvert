@@ -1,7 +1,9 @@
 import { DOMMessage, DOMMessageResponse } from '../types';
 
 window.onload = function () {
-  console.log('content loaded');
   const getImage = document.querySelector('img');
-  console.log(getImage);
+  console.log(`content loaded`);
+  console.log(getImage)
+  if (getImage === null) console.log('dont find any images on this side');
+  
 };

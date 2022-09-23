@@ -43,6 +43,8 @@
   "devDependencies": {
     "@types/chrome": "^0.0.151",
     "@types/react-dom": "^18.0.6",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
 }

@@ -5,6 +5,7 @@
 h1 {
   @apply text-2xl;
 }
+
 body {
   width: 600px;
   height: 400px;
