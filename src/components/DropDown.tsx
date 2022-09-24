@@ -1,103 +1,68 @@
 import React from 'react';
-import { createPopper } from '@popperjs/core';
 
-const Dropdown = ({ color }: any) => {
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-
-    setDropdownPopoverShow(true);
-  };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
-  // bg colors
-  let bgColor;
-  color === 'white'
-    ? (bgColor = 'bg-slate-700')
-    : (bgColor = 'bg-' + color + '-500');
+function DropDown() {
   return (
-    <>
-      <div className='flex flex-wrap'>
-        <div className='w-full sm:w-6/12 md:w-4/12 px-4'>
-          <div className='relative inline-flex align-middle w-full'>
-            <button
-              className={
-                'text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ' +
-                bgColor
-              }
-              type='button'
-              onClick={() => {
-                dropdownPopoverShow
-                  ? closeDropdownPopover()
-                  : openDropdownPopover();
-              }}
-            >
-              {color === 'white' ? 'White Dropdown' : color + ' Dropdown'}
-            </button>
-            <div
-              className={
-                (dropdownPopoverShow ? 'block ' : 'hidden ') +
-                (color === 'white' ? 'bg-white ' : bgColor + ' ') +
-                'text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1'
-              }
-              style={{ minWidth: '12rem' }}
-            >
-              <a
-                href='#pablo'
-                className={
-                  'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ' +
-                  (color === 'white' ? ' text-slate-700' : 'text-white')
-                }
-                onClick={(e) => e.preventDefault()}
-              >
-                Action
-              </a>
-              <a
-                href='#pablo'
-                className={
-                  'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ' +
-                  (color === 'white' ? ' text-slate-700' : 'text-white')
-                }
-                onClick={(e) => e.preventDefault()}
-              >
-                Another action
-              </a>
-              <a
-                href='#pablo'
-                className={
-                  'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ' +
-                  (color === 'white' ? ' text-slate-700' : 'text-white')
-                }
-                onClick={(e) => e.preventDefault()}
-              >
-                Something else here
-              </a>
-              <div className='h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25' />
-              <a
-                href='#pablo'
-                className={
-                  'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ' +
-                  (color === 'white' ? ' text-slate-700' : 'text-white')
-                }
-                onClick={(e) => e.preventDefault()}
-              >
-                Seprated link
-              </a>
-            </div>
-          </div>
+    <div className='relative inline-block text-left'>
+      <div>
+        <button
+          type='button'
+          className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100'
+          id='menu-button'
+          aria-expanded='true'
+          aria-haspopup='true'
+        >
+          Options
+          <svg
+            className='-mr-1 ml-2 h-5 w-5'
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 20 20'
+            fill='currentColor'
+            aria-hidden='true'
+          >
+            <path
+              fill-rule='evenodd'
+              d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z'
+              clip-rule='evenodd'
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
+        role='menu'
+        aria-orientation='vertical'
+        aria-labelledby='menu-button'
+      >
+        <div className='py-1' role='none'>
+          <a
+            href='#'
+            className='text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100'
+            role='menuitem'
+            id='menu-item-0'
+          >
+            Account settings
+          </a>
+          <a
+            href='#'
+            className='text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100'
+            role='menuitem'
+            id='menu-item-1'
+          >
+            Support
+          </a>
+          <a
+            href='#'
+            className='text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100'
+            role='menuitem'
+            id='menu-item-2'
+          >
+            License
+          </a>
         </div>
       </div>
-    </>
-  );
-};
-
-export default function DropdownRender() {
-  return (
-    <>
-      <Dropdown color='white' />
-    </>
+    </div>
   );
 }
+
+export default DropDown;
