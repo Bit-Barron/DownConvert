@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import DropDown from '../src/components/DropDown';
 import Header from './components/elements/Header';
 import { DOMMessage, DOMMessageResponse } from './types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import DropDown from '../src/components/DropDown';
 
 function App() {
-  const [title, setTitle] = React.useState('');
-  const [headlines, setHeadlines] = React.useState<string[]>([]);
-  const [imgs, setImgs] = React.useState<string[]>([]);
+  const [title, setTitle] = useState('');
+  const [headlines, setHeadlines] = useState<string[]>([]);
+  const [imgs, setImgs] = useState<string[]>([]);
+
+  console.log(headlines);
 
   React.useEffect(() => {
     chrome.tabs &&

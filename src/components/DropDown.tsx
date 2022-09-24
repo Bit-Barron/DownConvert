@@ -1,5 +1,3 @@
-import React from 'react';
-
 function DropDown() {
   return (
     <div className='relative inline-block text-left'>
@@ -36,7 +34,7 @@ function DropDown() {
       >
         <div className='py-1' role='none'>
           <a
-            href='#'
+            href='/'
             className='text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100'
             role='menuitem'
             id='menu-item-0'
@@ -44,7 +42,7 @@ function DropDown() {
             Account settings
           </a>
           <a
-            href='#'
+            href='/'
             className='text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100'
             role='menuitem'
             id='menu-item-1'
@@ -52,7 +50,7 @@ function DropDown() {
             Support
           </a>
           <a
-            href='#'
+            href='/'
             className='text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100'
             role='menuitem'
             id='menu-item-2'
