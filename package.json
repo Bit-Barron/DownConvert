@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "private": "false",
   "dependencies": {
+    "@headlessui/react": "^1.7.2",
+    "@heroicons/react": "^2.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1"
   },
