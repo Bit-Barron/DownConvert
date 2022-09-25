@@ -28,7 +28,7 @@ export default function Example() {
 
   return (
     <Combobox as='div' value={selectedPerson} onChange={setSelectedPerson}>
-      <Combobox.Label className='block text-sm font-medium text-gray-700'>
+      <Combobox.Label className='block text-sm font-medium text-white'>
         Download Image as:
       </Combobox.Label>
       <div className='relative mt-1'>

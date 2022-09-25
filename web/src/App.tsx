@@ -3,6 +3,7 @@ import Dropdown from './components/Dropdown';
 import Tabs from './components/elements/Tabs';
 import Header from './components/elements/Header';
 import { DOMMessage, DOMMessageResponse } from './types';
+import { type } from 'os';
 
 function App() {
   const [title, setTitle] = useState('');
@@ -10,7 +11,7 @@ function App() {
   const [imgs, setImgs] = useState<string[]>([]);
 
   console.log(headlines);
-  console.log(title)
+  console.log(title);
 
   React.useEffect(() => {
     chrome.tabs &&
@@ -35,11 +36,11 @@ function App() {
 
   return (
     <section className=' '>
-      <nav className='mb-5 bg-purple-900 px-2 py-2.5 sm:px-4'>
+      <nav className='mb-5 px-2 py-2.5 sm:px-4'>
         <Header
           name='DownConvert'
           className={
-            'flex items-center justify-between rounded border-b-4 px-6 py-2 font-semibold text-white '
+            'tracking-tights mt-5 flex items-center justify-between rounded border-b-4  px-6 py-2 text-base font-medium text-slate-900 dark:text-white'
           }
         />
       </nav>
@@ -51,7 +52,7 @@ function App() {
       </div>
       <main className='image-container mt-10'>
         {imgs.map((image) => (
-          <img src={image} id={image} alt='images' />
+          <img src={image} id={image} alt='images'/>
         ))}
       </main>
     </section>

@@ -1,8 +1,7 @@
-import newWindow from "./newWindow"
 
 const tabs = [
   { name: 'Current', href: '#', current: true },
-  { name: 'More Informations', href: {newWindow}, current: false },
+  { name: 'More Informations', href: "#", current: false },
 ]
 
 function classNames(...classes: string[]) {
