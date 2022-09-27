@@ -3,7 +3,6 @@ import Dropdown from './components/Dropdown';
 import Tabs from './components/elements/Tabs';
 import Header from './components/elements/Header';
 import { DOMMessage, DOMMessageResponse } from './types';
-import { type } from 'os';
 
 function App() {
   const [title, setTitle] = useState('');
@@ -35,7 +34,7 @@ function App() {
   });
 
   return (
-    <section className=' '>
+    <section>
       <nav className='mb-5 px-2 py-2.5 sm:px-4'>
         <Header
           name='DownConvert'
@@ -52,7 +51,7 @@ function App() {
       </div>
       <main className='image-container mt-10'>
         {imgs.map((image) => (
-          <img src={image} id={image} alt='images'/>
+          <img src={image} id={image} alt='images' />
         ))}
       </main>
     </section>
