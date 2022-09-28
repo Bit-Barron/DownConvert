@@ -5,12 +5,7 @@ import Header from './components/elements/Header';
 import { DOMMessage, DOMMessageResponse } from './types';
 
 function App() {
-  const [title, setTitle] = useState('');
-  const [headlines, setHeadlines] = useState<string[]>([]);
   const [imgs, setImgs] = useState<string[]>([]);
-
-  console.log(headlines);
-  console.log(title);
 
   React.useEffect(() => {
     chrome.tabs &&
@@ -24,9 +19,7 @@ function App() {
             tabs[0].id || 0,
             { type: 'GET_DOM' } as DOMMessage,
             (response: DOMMessageResponse) => {
-              setTitle(response.title);
-              setImgs(response.images);
-              setHeadlines(response.headlines);
+              setImgs(response?.images);
             }
           );
         }
@@ -50,7 +43,7 @@ function App() {
         <Dropdown />
       </div>
       <main className='image-container mt-10'>
-        {imgs.map((image) => (
+        {imgs?.map((image) => (
           <img src={image} id={image} alt='images' />
         ))}
       </main>
