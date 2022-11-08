@@ -1,29 +1,31 @@
+import React from 'react';
 import { useState } from 'react';
 import Dropdown from './components/Dropdown';
 import Header from './components/elements/Header';
 import Tabs from './components/elements/Tabs';
+import { DOMMessage, DOMMessageResponse } from './types';
 
 function App() {
   const [imgs, setImgs] = useState<string[]>([]);
 
-  // React.useEffect(() => {
-  //   chrome.tabs &&
-  //     chrome.tabs.query(
-  //       {
-  //         active: true,
-  //         currentWindow: true,
-  //       },
-  //       (tabs) => {
-  //         chrome.tabs.sendMessage(
-  //           tabs[0].id || 0,
-  //           { type: 'GET_DOM' } as DOMMessage,
-  //           (response: DOMMessageResponse) => {
-  //             setImgs(response?.images);
-  //           }
-  //         );
-  //       }
-  //     );
-  // });
+  React.useEffect(() => {
+    chrome.tabs &&
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        (tabs) => {
+          chrome.tabs.sendMessage(
+            tabs[0].id || 0,
+            { type: 'GET_DOM' } as DOMMessage,
+            (response: DOMMessageResponse) => {
+              setImgs(response?.images);
+            }
+          );
+        }
+      );
+  });
 
   return (
     <section>
