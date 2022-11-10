@@ -5,6 +5,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^2.0.11",
+    "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
@@ -26,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "craco build",
+    "build": "nodemon --exec craco build",
     "prettier": "prettier --write ./src/**/*.{js,jsx,ts,tsx}"
   },
   "eslintConfig": {
