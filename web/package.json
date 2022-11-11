@@ -27,7 +27,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "nodemon --exec craco build",
+    "dev": "nodemon --exec craco build",
+    "build": "craco build",
     "prettier": "prettier --write ./src/**/*.{js,jsx,ts,tsx}"
   },
   "eslintConfig": {

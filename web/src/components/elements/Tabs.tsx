@@ -1,4 +1,3 @@
-import { IncomingMessage } from "http"
 
 const tabs = [
   { name: 'Images', href: '#', current: true },

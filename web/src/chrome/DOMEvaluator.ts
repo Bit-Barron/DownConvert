@@ -6,8 +6,6 @@ const messagesFromReactAppListener = (
   sender: chrome.runtime.MessageSender,
   sendResponse: (response: DOMMessageResponse) => void
 ) => {
-  console.log('[content.js]. Message received', msg);
-
   const response: DOMMessageResponse = {
     title: document.title,
     headlines: Array.from(document.getElementsByTagName<'h1'>('h1')).map(
@@ -18,46 +16,50 @@ const messagesFromReactAppListener = (
     ),
   };
 
-  const trackUrls = {
-    urls: ['<all_urls>'],
-  };
-  // !IMPORTANT
-  const reqBodyHeaders = httpTracker.isFF
-    ? ['requestBody']
-    : ['requestBody', 'extraHeaders'];
-  const reqHeaders = httpTracker.isFF
-    ? ['requestHeaders']
-    : ['requestHeaders', 'extraHeaders'];
-  const reqHeadersBlocking = httpTracker.isFF
-    ? ['blocking', 'requestHeaders']
-    : ['blocking', 'requestHeaders', 'extraHeaders'];
-  const resHeaders = httpTracker.isFF
-    ? ['responseHeaders']
-    : ['responseHeaders', 'extraHeaders'];
-  const errorHeaders = ['extraHeaders'];
-
-  const r = httpTracker.browser.webRequest;
-  r.onCompleted.addListener(
-    function (details: any) {
-      details.callerName = 'onCompleted';
-      details.requestIdEnhanced = details.requestId;
-      console.log(details);
-    },
-    trackUrls,
-    resHeaders
-  );
-  console.log(resHeaders);
-
-  console.log('[content.js]. Message response', resHeaders);
-
   sendResponse(response);
 };
+
+const reqBodyHeaders = httpTracker.isFF
+  ? ['requestBody']
+  : ['requestBody', 'extraHeaders'];
+const reqHeaders = httpTracker.isFF
+  ? ['requestHeaders']
+  : ['requestHeaders', 'extraHeaders'];
+const reqHeadersBlocking = httpTracker.isFF
+  ? ['blocking', 'requestHeaders']
+  : ['blocking', 'requestHeaders', 'extraHeaders'];
+const resHeaders = httpTracker.isFF
+  ? ['responseHeaders']
+  : ['responseHeaders', 'extraHeaders'];
+const errorHeaders = ['extraHeaders'];
+
+const trackUrls = {
+  urls: ['<all_urls>'],
+};
+// !IMPORTANT
+
+const r = chrome.webRequest;
+r.onCompleted.addListener(
+  // @ts-ignore
+  function (details: {
+    callerName: string;
+    requestIdEnhanced: any;
+    requestId: any;
+  }) {
+    details.callerName = 'onCompleted';
+    details.requestIdEnhanced = details.requestId;
+    console.log(details);
+  },
+  trackUrls,
+  resHeaders
+);
+
+console.log("asdf");
 
 chrome.runtime.onMessage.addListener(messagesFromReactAppListener);
 
 chrome.webRequest.onResponseStarted.addListener(
   function (details) {
-    console.log(details);
     console.log('details');
   },
   {
