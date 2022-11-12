@@ -36,7 +36,6 @@ const errorHeaders = ['extraHeaders'];
 const trackUrls = {
   urls: ['<all_urls>'],
 };
-// !IMPORTANT
 
 const r = chrome.webRequest;
 r.onCompleted.addListener(
@@ -53,8 +52,7 @@ r.onCompleted.addListener(
   trackUrls,
   resHeaders
 );
-
-console.log("asdf");
+console.log(resHeaders, trackUrls);
 
 chrome.runtime.onMessage.addListener(messagesFromReactAppListener);
 
