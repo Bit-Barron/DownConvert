@@ -47,9 +47,7 @@ function App() {
         <Dropdown />
       </div>
       <main className='image-container mt-10'>
-        {imgs?.map((image) => (
-          <img src={image} id={image} alt='images' />
-        ))}
+        <div className='text-4xl'></div>
       </main>
     </section>
   );
