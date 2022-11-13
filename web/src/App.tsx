@@ -1,31 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
 import Dropdown from './components/Dropdown';
 import Header from './components/elements/Header';
 import Tabs from './components/elements/Tabs';
-import { DOMMessage, DOMMessageResponse } from './types';
+import { useState } from 'react';
 
 function App() {
-  const [imgs, setImgs] = useState<string[]>([]);
-
-  React.useEffect(() => {
-    chrome.tabs &&
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        (tabs) => {
-          chrome.tabs.sendMessage(
-            tabs[0].id || 0,
-            { type: 'GET_DOM' } as DOMMessage,
-            (response: DOMMessageResponse) => {
-              setImgs(response?.images);
-            }
-          );
-        }
-      );
-  });
+  const [details, setDetails] = useState();
 
   return (
     <section>
@@ -44,9 +23,7 @@ function App() {
         <Dropdown />
       </div>
       <main className='image-container mt-10'>
-        {imgs?.map((image) => (
-          <img src={image} id={image} alt='images' />
-        ))}
+        <div className='text-4xl'></div>
       </main>
     </section>
   );

@@ -6,4 +6,5 @@ export type DOMMessageResponse = {
   title: string;
   headlines: string[];
   images: string[];
+  data: any;
 };
