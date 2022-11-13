@@ -32,8 +32,10 @@ const Popup: React.FC = () => {
   }, []);
 
   return (
-    <section className="p-10">
-      <h1 className="text-lg font-bold">Header</h1>
+    <section className="image-container p-10">
+      <h1 className="mb-10 text-center text-3xl font-bold text-[#E96C4C]">
+        Header
+      </h1>
 
       {imgs?.map((image) => (
         <img key={image} src={image} id={image} alt="images" />
