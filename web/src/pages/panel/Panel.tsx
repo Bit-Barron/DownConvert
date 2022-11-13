@@ -1,5 +1,4 @@
 import React from "react";
-import "@pages/panel/Panel.css";
 
 const Panel: React.FC = () => {
   return (
