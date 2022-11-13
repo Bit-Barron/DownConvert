@@ -1,39 +1,34 @@
-import React, { useEffect } from "react";
-import logo from "@assets/img/logo.svg";
+import React, { useEffect, useState } from "react";
+// import logo from "@assets/img/logo.svg";
 
 const Popup: React.FC = () => {
+  const [imgs, setImgs] = useState<string[]>([]);
+
   useEffect(() => {
-    const handleMessage = (event: Event) => {
-      const { detail } =
-        event as CustomEvent<chrome.webRequest.WebResponseCacheDetails>;
-      if (detail.type === "image") {
-        console.log(Math.random(), detail);
-        // setImgs((imgs) => [...imgs, detail.url]);
+    const messageHandler = (request) => {
+      const data = request?.data as chrome.webRequest.WebResponseCacheDetails;
+      if (data?.type === "image") {
+        const headers = data.responseHeaders;
+        console.log(headers);
+        setImgs((imgs) => [...imgs, data.url]);
       }
     };
 
-    document.addEventListener("webRequest", handleMessage);
+    chrome.runtime.onMessage.addListener(messageHandler);
 
     return () => {
-      document.removeEventListener("webRequest", handleMessage);
+      chrome.runtime.onMessage.removeListener(messageHandler);
     };
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="text-3xl font-bold underline">Hello wasdorld!</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-      </header>
-    </div>
+    <section className="p-10">
+      <h1 className="font-bold text-lg">Header</h1>
+
+      {imgs?.map((image) => (
+        <img key={image} src={image} id={image} alt="images" />
+      ))}
+    </section>
   );
 };
 
