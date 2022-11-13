@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "@assets/img/logo.svg";
 
 const Popup: React.FC = () => {
+  useEffect(() => {
+    const handleMessage = (event: Event) => {
+      const { detail } =
+        event as CustomEvent<chrome.webRequest.WebResponseCacheDetails>;
+      if (detail.type === "image") {
+        console.log(Math.random(), detail);
+        // setImgs((imgs) => [...imgs, detail.url]);
+      }
+    };
+
+    document.addEventListener("webRequest", handleMessage);
+
+    return () => {
+      document.removeEventListener("webRequest", handleMessage);
+    };
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
