@@ -14,7 +14,6 @@ const Popup: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
     chrome.runtime.onMessage.addListener(messageHandler);
 
@@ -27,7 +26,7 @@ const Popup: React.FC = () => {
 
   return (
     <section className="p-10">
-      <h1 className=" text-lg font-bold">Header</h1>
+      <h1 className="text-lg font-bold">Header</h1>
 
       {imgs?.map((image) => (
         <img key={image} src={image} id={image} alt="images" />
