@@ -1,12 +1,12 @@
 import React from "react";
 import logo from "@assets/img/logo.svg";
 
-const Popup = () => {
+const Popup: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <h1 className="text-3xl font-bold underline">Hello wasdorld!</h1>
         <a
           className="App-link"
           href="https://reactjs.org"

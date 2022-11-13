@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "@assets/img/logo.svg";
 
-const Newtab = () => {
+const Newtab: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -17,7 +17,7 @@ const Newtab = () => {
         >
           Learn React!
         </a>
-        <h6>The color of this paragraph is defined using SASS.</h6>
+        <h6>The color of this paragraph is dasdefined using SASS.</h6>
       </header>
     </div>
   );
