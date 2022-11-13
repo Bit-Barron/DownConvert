@@ -5,11 +5,13 @@ const Popup: React.FC = () => {
   const [imgs, setImgs] = useState<string[]>([]);
 
   useEffect(() => {
-    const messageHandler = (request) => {
-      const data = request?.data as chrome.webRequest.WebResponseCacheDetails;
+    const messageHandler = (request: {
+      msg: string;
+      data?: chrome.webRequest.WebResponseCacheDetails;
+    }) => {
+      const data = request?.data;
+      console.log(request);
       if (data?.type === "image") {
-        const headers = data.responseHeaders;
-        console.log(headers);
         setImgs((imgs) => [...imgs, data.url]);
       }
     };
@@ -20,6 +22,8 @@ const Popup: React.FC = () => {
       chrome.runtime.onMessage.removeListener(messageHandler);
     };
   }, []);
+
+  console.log(imgs);
 
   return (
     <section className="p-10">
