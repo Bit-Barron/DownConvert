@@ -9,11 +9,6 @@
     "wss": "node utils/reload/initReloadServer.js",
     "dev": "npm run build:hmr && start /b npm run wss && nodemon"
   },
-  "prettier": {
-    "singleQuote": false,
-    "trailingComma": "es5",
-    "arrowParens": "always"
-  },
   "type": "module",
   "dependencies": {
     "react": "18.2.0",
@@ -21,7 +16,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
-    "@testing-library/react": "13.4.0",
     "@types/chrome": "0.0.200",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
@@ -36,13 +30,12 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.10",
-    "fs-extra": "10.1.0",
     "nodemon": "2.0.20",
     "postcss": "^8.4.19",
     "prettier": "2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "rollup": "2.79.1",
     "tailwindcss": "^3.2.4",
-    "ts-loader": "9.4.1",
     "typescript": "4.8.4",
     "vite": "3.2.3",
     "ws": "8.11.0"
