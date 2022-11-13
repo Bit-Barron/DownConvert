@@ -1,31 +1,34 @@
-import React from 'react';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Dropdown from './components/Dropdown';
 import Header from './components/elements/Header';
 import Tabs from './components/elements/Tabs';
-import { DOMMessage, DOMMessageResponse } from './types';
 
 function App() {
+  const handlerRef = useRef<any>(null);
   const [imgs, setImgs] = useState<string[]>([]);
 
-  React.useEffect(() => {
-    chrome.tabs &&
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        (tabs) => {
-          chrome.tabs.sendMessage(
-            tabs[0].id || 0,
-            { type: 'GET_DOM' } as DOMMessage,
-            (response: DOMMessageResponse) => {
-              setImgs(response?.images);
-            }
-          );
-        }
-      );
-  });
+  const handleMessage = useCallback((event: Event) => {
+    const { detail } =
+      event as CustomEvent<chrome.webRequest.WebResponseCacheDetails>;
+    if (detail.type === 'image') {
+      console.log(Math.random(), detail);
+      // setImgs((imgs) => [...imgs, detail.url]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!handlerRef.current) {
+      document.addEventListener('webRequest', handleMessage);
+    }
+
+    handlerRef.current = true;
+
+    return () => {
+      document.removeEventListener('webRequest', handleMessage);
+    };
+  }, [handleMessage]);
+
+  // console.log(handlerRef.current);
 
   return (
     <section>

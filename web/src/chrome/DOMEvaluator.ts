@@ -1,9 +1,8 @@
-import { DOMMessage, DOMMessageResponse } from '../types';
+export {};
 
 chrome.webRequest.onCompleted.addListener(
-  (details) => {
-    console.log(details);
-  },
+  (details) =>
+    document.dispatchEvent(new CustomEvent('webRequest', { detail: details })),
   { urls: ['<all_urls>'] },
   ['responseHeaders', 'extraHeaders']
 );
