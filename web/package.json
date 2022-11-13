@@ -1,22 +1,21 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
-  "version": "0.0.1",
-  "description": "chrome extension boilerplate",
+  "name": "down-convert",
+  "version": "1.0.0",
+  "description": "down-convert",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
-  },
   "scripts": {
     "build": "tsc --noEmit && vite build",
     "build:hmr": "rollup --config utils/reload/rollup.config.ts",
     "wss": "node utils/reload/initReloadServer.js",
-    "dev": "npm run build:hmr && concurrently \"npm run wss\" \"nodemon\"",
-    "test": "jest"
+    "dev": "npm run build:hmr && start /b npm run wss && nodemon"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "trailingComma": "es5",
+    "arrowParens": "always"
   },
   "type": "module",
   "dependencies": {
-    "concurrently": "^7.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -24,7 +23,6 @@
     "@rollup/plugin-typescript": "^9.0.2",
     "@testing-library/react": "13.4.0",
     "@types/chrome": "0.0.200",
-    "@types/jest": "29.2.2",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
@@ -39,15 +37,11 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.10",
     "fs-extra": "10.1.0",
-    "jest": "29.3.1",
-    "jest-environment-jsdom": "29.3.1",
     "nodemon": "2.0.20",
     "postcss": "^8.4.19",
     "prettier": "2.7.1",
     "rollup": "2.79.1",
-    "sass": "1.56.1",
     "tailwindcss": "^3.2.4",
-    "ts-jest": "29.0.3",
     "ts-loader": "9.4.1",
     "typescript": "4.8.4",
     "vite": "3.2.3",
