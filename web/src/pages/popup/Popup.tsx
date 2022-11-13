@@ -15,14 +15,21 @@ const Popup: React.FC = () => {
   };
 
   useEffect(() => {
-    chrome.runtime.onMessage.addListener(messageHandler);
+    chrome.storage.local.get(null, (items) => {
+      const requests = Object.values(items) as [
+        chrome.webRequest.WebResponseCacheDetails
+      ];
 
-    return () => {
-      chrome.runtime.onMessage.removeListener(messageHandler);
-    };
+      const images = requests.filter((request) => request.type === "image");
+
+      setImgs(images.map((image) => image.url));
+    });
+    // chrome.runtime.onMessage.addListener(messageHandler);
+
+    // return () => {
+    //   chrome.runtime.onMessage.removeListener(messageHandler);
+    // };
   }, []);
-
-  console.log(imgs);
 
   return (
     <section className="p-10">
