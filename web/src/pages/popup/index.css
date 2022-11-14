@@ -16,3 +16,21 @@ body {
   height: 500;
   background-color: #141e24;
 }
+
+.container {
+  border: 1px solid #DDDDDD;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+.tag {
+  float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  background-color: #92AD40;
+  padding: 5px;
+  color: #FFFFFF;
+  font-weight: bold;
+}

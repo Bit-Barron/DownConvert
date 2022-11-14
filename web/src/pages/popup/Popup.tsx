@@ -24,21 +24,31 @@ const Popup: React.FC = () => {
 
       setImgs(images.map((image) => image.url));
     });
-    // chrome.runtime.onMessage.addListener(messageHandler);
+    chrome.runtime.onMessage.addListener(messageHandler);
 
-    // return () => {
-    //   chrome.runtime.onMessage.removeListener(messageHandler);
-    // };
+    return () => {
+      chrome.runtime.onMessage.removeListener(messageHandler);
+    };
   }, []);
 
   return (
     <section className="image-container p-10">
       <h1 className="mb-10 text-center text-3xl font-bold text-[#E96C4C]">
-        Header
+        DownConvert
       </h1>
-
       {imgs?.map((image) => (
-        <img key={image} src={image} id={image} alt="images" />
+        <>
+          <div className="container">
+          <div className="tag">Featured</div>
+            <img
+              key={image}
+              src={image}
+              id={image}
+              alt="images"
+              className="image-container"
+            />
+          </div>
+        </>
       ))}
     </section>
   );
