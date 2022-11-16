@@ -18,19 +18,46 @@ body {
 }
 
 .container {
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   width: 200px;
   height: 200px;
   position: relative;
 }
 .tag {
-  float: left;
-  position: absolute;
-  left: 0px;
-  top: 0px;
+  @apply absolute left-0 top-0 float-left bg-[#ffffff] bg-opacity-30 p-[5px] font-bold  text-[#ffffff];
   z-index: 1000;
-  background-color: #92AD40;
-  padding: 5px;
-  color: #FFFFFF;
-  font-weight: bold;
+}
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-black dark:bg-white;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  @apply bg-white dark:bg-gray-500;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
