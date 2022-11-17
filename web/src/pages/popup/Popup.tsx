@@ -7,8 +7,6 @@ const Popup: React.FC = () => {
       headers: chrome.webRequest.HttpHeader[];
       type: chrome.webRequest.ResourceType;
       format: chrome.webRequest.HttpHeader;
-      server: chrome.webRequest.HttpHeader;
-      date: chrome.webRequest.HttpHeader;
     }[]
   >([]);
 
@@ -37,18 +35,7 @@ const Popup: React.FC = () => {
         format: image.responseHeaders.find(
           (header) => header.name === "content-type"
         ),
-        server: image.responseHeaders.find(
-          (header) => header.name === "server"
-        ),
-        date: image.responseHeaders.find((header) => header.name === "date"),
       }));
-      chrome.storage.local.clear(function () {
-        var error = chrome.runtime.lastError;
-        if (error) {
-          console.error(error);
-        }
-        // do something more
-      });
 
       setImgs(imagesData);
     });
@@ -61,16 +48,15 @@ const Popup: React.FC = () => {
   }, []);
 
   return (
-    <section className="image-conatainer ">
-      <h1 className=" text-center text-3xl font-bold text-[#E96C4C]">
+    <section className="image-container p-4">
+      <h1 className="mb-10 text-center text-3xl font-bold text-[#E96C4C]">
         DownConvert
       </h1>
       {imgs.map((image) => {
-        const { url, headers, type, format, date, server } = image;
-        console.log(headers);
+        const { url, headers, type, format } = image;
         return (
           <>
-            <div className="" id={image.url}>
+            <div className="image-container container mt-10" id={image.url}>
               <img
                 key={url}
                 src={url}
@@ -80,10 +66,8 @@ const Popup: React.FC = () => {
               <div className="tag">
                 <ul className="text-black">
                   <li>Type: {type} </li>
-                  <li>Format: {format?.value}</li>
-                  <li>Date: {date?.value} </li>
-                  <li>Server: {server?.value} </li>
-
+                  <li>Format: {format?.name}</li>
+                  <li>Likes: </li>
                 </ul>
               </div>
             </div>

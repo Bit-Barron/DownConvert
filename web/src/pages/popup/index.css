@@ -6,11 +6,11 @@ h1 {
   @apply text-2xl;
 }
 
-.image-container {
-  @apply inline-block w-full;
+/* .image-container {
+  @apply inline-block ;
   columns: 4 200px;
   @apply hover:rounded-lg;
-}
+} */
 body {
   width: 650px;
   height: 500px;

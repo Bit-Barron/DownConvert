@@ -1,15 +1,8 @@
-import {
-  BuildingOfficeIcon,
-  CreditCardIcon,
-  UserIcon,
-  UsersIcon,
-} from "@heroicons/react/20/solid";
+import { CreditCardIcon, UserIcon } from "@heroicons/react/20/solid";
 
 const tabs = [
   { name: "My Account", href: "#", icon: UserIcon, current: false },
-  { name: "Company", href: "#", icon: BuildingOfficeIcon, current: false },
-  { name: "Team Members", href: "#", icon: UsersIcon, current: true },
-  { name: "Billing", href: "#", icon: CreditCardIcon, current: false },
+  { name: "Subscription", href: "#", icon: CreditCardIcon, current: false },
 ];
 
 function classNames(...classes) {
