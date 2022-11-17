@@ -1,4 +1,3 @@
-console.log("content loaded");
 
 /**
  * @description

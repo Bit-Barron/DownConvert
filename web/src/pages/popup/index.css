@@ -13,14 +13,11 @@ h1 {
 }
 body {
   width: 650px;
-  height: 500;
+  height: 500px;
   background-color: #141e24;
 }
 
 .container {
-  border: 1px solid #dddddd;
-  width: 200px;
-  height: 200px;
   position: relative;
 }
 .tag {

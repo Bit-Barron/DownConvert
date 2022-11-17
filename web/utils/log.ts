@@ -18,7 +18,6 @@ export default function colorLog(message: string, type?: ColorType) {
       break;
   }
 
-  console.log(color, message);
 }
 
 const COLORS = {

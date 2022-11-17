@@ -1,6 +1,5 @@
 chrome.webRequest.onCompleted.addListener(
   (details) => {
-    console.log(details);
 
     chrome.storage.local.set({ [`${details.timeStamp}`]: details });
 
@@ -9,7 +8,8 @@ chrome.webRequest.onCompleted.addListener(
     //   data: details,
     // });
   },
-  { urls: ["<all_urls>"] }
+  { urls: ["<all_urls>"] },
+  ['responseHeaders', 'extraHeaders']
 );
 // chrome.storage.local.clear(function () {
 //   var error = chrome.runtime.lastError;
