@@ -3,7 +3,7 @@ import Tabs from "./Tabs";
 
 const Popup: React.FC = () => {
   const [shouldShowSearch, setShouldShowSearch] = useState(false);
-  const toggleShowSearch = () => setShouldShowSearch(prev => !prev);
+  const toggleShowSearch = () => setShouldShowSearch((prev) => !prev);
   const [imgs, setImgs] = useState<
     {
       url: string;
@@ -60,7 +60,7 @@ const Popup: React.FC = () => {
           <Dropdown/>
         </div> */}
         <div>
-          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] " >
+          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">
             Select All Images
           </button>
           <button className="mt-5 ml-2 rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]">
@@ -86,11 +86,7 @@ const Popup: React.FC = () => {
                       onClick={() => {
                         return active === true;
                       }}
-                      className={
-                        active === true
-                          ? "border-4 border-red-900"
-                          : "opacity-100"
-                      }
+                      className={active ? "border-2 border-red-900" : ""}
                     />
                     <div className="tag">
                       <ul className=" text-black">
