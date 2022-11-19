@@ -47,7 +47,7 @@ const Popup: React.FC = () => {
     <>
       <section className="">
         <h1 className="mb-3 mt-4 text-center text-3xl font-bold text-[#E96C4C]">
-          DownConvert
+          Down<span className="text-[#b65840]">Convert</span>
         </h1>
         <div>
           <Tabs />
@@ -73,7 +73,7 @@ const Popup: React.FC = () => {
                       key={url}
                       src={url}
                       alt="images"
-                      className="focus:border-black min-h-full min-w-full "
+                      className="focus:border-black min-h-full min-w-full focus:outline-red-900"
                     />
                     <div className="tag">
                       <ul className=" text-black">

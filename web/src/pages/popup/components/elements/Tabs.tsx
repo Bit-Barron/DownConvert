@@ -37,7 +37,7 @@ export default function Tabs() {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:text-[#E96C4C]] focus:text-[#E96C4C]]"
+          className="block w-full rounded-md border-gray-300 focus:text-[#E96C4C]"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
