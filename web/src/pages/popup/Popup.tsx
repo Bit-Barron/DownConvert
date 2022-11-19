@@ -53,7 +53,7 @@ const Popup: React.FC = () => {
           <Tabs />
         </div>
         <div>
-          <button className="rounded border border-blue-700 bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 mt-5">
+          <button className="rounded border  bg-[#E96C4C] py-2 px-4 font-bold text-white border-[#E96C4C] mt-5 ml-2 hover:bg-[#b1523b]">
             Select All Images
           </button>
         </div>

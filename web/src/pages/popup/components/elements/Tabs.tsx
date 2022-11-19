@@ -37,7 +37,7 @@ export default function Tabs() {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-md border-gray-300 focus:text-[#E96C4C]] focus:text-[#E96C4C]]"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
@@ -53,7 +53,7 @@ export default function Tabs() {
                 key={tab.name}
                 className={classNames(
                   tab.current
-                    ? "border-indigo-500 text-indigo-600"
+                    ? "border-[#E96C4C] text-[#E96C4C]"
                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
                   "group inline-flex items-center border-b-2 py-4 px-1 text-sm font-medium"
                 )}
