@@ -11,10 +11,10 @@ chrome.webRequest.onCompleted.addListener(
   { urls: ["<all_urls>"] },
   ['responseHeaders', 'extraHeaders']
 );
-// chrome.storage.local.clear(function () {
-//   var error = chrome.runtime.lastError;
-//   if (error) {
-//     console.error(error);
-//   }
-//   // do something more
-// });
+chrome.storage.local.clear(function () {
+  var error = chrome.runtime.lastError;
+  if (error) {
+    console.error(error);
+  }
+  // do something more
+});

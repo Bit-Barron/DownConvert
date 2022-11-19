@@ -6,11 +6,12 @@ h1 {
   @apply text-2xl;
 }
 
-/* .image-container {
+.image-container {
   @apply inline-block ;
   columns: 4 200px;
+  @apply mt-10;
   @apply hover:rounded-lg;
-} */
+}
 body {
   width: 650px;
   height: 500px;

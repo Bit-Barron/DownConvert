@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
+import Dropdown from "./components/elements/Dropdown";
+import Tabs from "./components/elements/Tabs";
 
 const Popup: React.FC = () => {
   const [imgs, setImgs] = useState<
     {
       url: string;
       headers: chrome.webRequest.HttpHeader[];
-      type: chrome.webRequest.ResourceType;
+      lastModified: chrome.webRequest.HttpHeader;
       format: chrome.webRequest.HttpHeader;
+      date: chrome.webRequest.HttpHeader;
+      expires: chrome.webRequest.HttpHeader;
     }[]
   >([]);
-
-  // const messageHandler = (request: {
-  //   msg: string;
-  //   data?: chrome.webRequest.WebResponseCacheDetails;
-  // }) => {
-  //   const data = request?.data;
-  //   if (data?.type === "image") {
-  //     setImgs((imgs) => [...imgs, data.url]);
-  //   }
-  // };
 
   useEffect(() => {
     chrome.storage.local.get(null, (items) => {
@@ -26,55 +20,69 @@ const Popup: React.FC = () => {
         chrome.webRequest.WebResponseCacheDetails
       ];
 
-      const images = requests.filter((request) => request.type === "image");
+      const images = requests
+        .filter((request) => request.type === "image")
+        .filter((image) => !image.url.toLowerCase().includes("adserver"));
 
       const imagesData = images.map((image) => ({
         url: image.url,
         headers: image.responseHeaders,
-        type: image.type,
+        lastModified: image.responseHeaders.find(
+          (header) => header.name === "last-modified"
+        ),
         format: image.responseHeaders.find(
           (header) => header.name === "content-type"
         ),
+        date: image.responseHeaders.find((header) => header.name === "date"),
+        expires: image.responseHeaders.find(
+          (header) => header.name === "expires"
+        ),
       }));
-
+      // https://secure.insightexpressai.com/adServer/adServerESI.aspx?script=false&bannerID=10865022&rnd=1668814256864&redir=https://secure.insightexpressai.com/adserver/1pixel.gif
       setImgs(imagesData);
     });
-
-    // chrome.runtime.onMessage.addListener(messageHandler);
-
-    // return () => {
-    // chrome.runtime.onMessage.removeListener(messageHandler);
-    // };
   }, []);
 
   return (
-    <section className="image-container p-4">
-      <h1 className="mb-10 text-center text-3xl font-bold text-[#E96C4C]">
-        DownConvert
-      </h1>
-      {imgs.map((image) => {
-        const { url, headers, type, format } = image;
-        return (
-          <>
-            <div className="image-container container mt-10" id={image.url}>
-              <img
-                key={url}
-                src={url}
-                alt="images"
-                className="min-h-full min-w-full"
-              />
-              <div className="tag">
-                <ul className="text-black">
-                  <li>Type: {type} </li>
-                  <li>Format: {format?.name}</li>
-                  <li>Likes: </li>
-                </ul>
-              </div>
-            </div>
-          </>
-        );
-      })}
-    </section>
+    <>
+      <section className="">
+        <h1 className="mb-3 mt-4 text-center text-3xl font-bold text-[#E96C4C]">
+          DownConvert
+        </h1>
+        <div>
+          <Tabs />
+        </div>
+        {/* <div className="mt-"><Dropdown/></div> */}
+        <main className="image-container">
+          <div>
+            {imgs.map((image) => {
+              const { url, format, date, lastModified, expires } = image;
+              const headers = format?.value.split("/")[1].toUpperCase();
+              return (
+                <>
+                  <div className="container mt-6 mb-6 overflow-hidden rounded bg-white shadow-lg " id={image.url}>
+                    <img
+                      key={url}
+                      src={url}
+                      alt="images"
+                      className="min-h-full min-w-full cursor-pointer focus:focus-1"
+                    />
+                    <div className="tag">
+                      <ul className=" text-black">
+                        <li>Last-Modified: {lastModified?.value} </li>
+                        <li>Format: {headers}</li>
+                        <li>Date: {date?.value} </li>
+                        {expires && <li>Expires: {expires?.value} </li>}
+                      </ul>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+          </div>
+        </main>
+      </section>
+    </>
   );
 };
 

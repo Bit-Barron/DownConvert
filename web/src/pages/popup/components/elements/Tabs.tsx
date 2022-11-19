@@ -1,15 +1,32 @@
-import { CreditCardIcon, UserIcon } from "@heroicons/react/20/solid";
+/*
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+*/
 
 const tabs = [
-  { name: "My Account", href: "#", icon: UserIcon, current: false },
-  { name: "Subscription", href: "#", icon: CreditCardIcon, current: false },
+  { name: "My Accounts", current: false },
+  { name: "Subscription", current: false },
+  { name: "Images", current: true },
+  { name: "Videos", current: false },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Tabs() {
   return (
     <div>
       <div className="sm:hidden">
@@ -34,7 +51,6 @@ export default function Example() {
             {tabs.map((tab) => (
               <a
                 key={tab.name}
-                href={tab.href}
                 className={classNames(
                   tab.current
                     ? "border-indigo-500 text-indigo-600"
@@ -43,15 +59,6 @@ export default function Example() {
                 )}
                 aria-current={tab.current ? "page" : undefined}
               >
-                <tab.icon
-                  className={classNames(
-                    tab.current
-                      ? "text-indigo-500"
-                      : "text-gray-400 group-hover:text-gray-500",
-                    "-ml-0.5 mr-2 h-5 w-5"
-                  )}
-                  aria-hidden="true"
-                />
                 <span>{tab.name}</span>
               </a>
             ))}
