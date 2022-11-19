@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tabs from "./components/elements/Tabs";
 
 const Popup: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(false);
   const [imgs, setImgs] = useState<
     {
       url: string;
@@ -10,6 +11,7 @@ const Popup: React.FC = () => {
       format: chrome.webRequest.HttpHeader;
       date: chrome.webRequest.HttpHeader;
       expires: chrome.webRequest.HttpHeader;
+      active: boolean;
     }[]
   >([]);
 
@@ -26,6 +28,7 @@ const Popup: React.FC = () => {
 
       const imagesData = images.map((image) => ({
         url: image.url,
+        active: false,
         headers: image.responseHeaders,
         lastModified: image.responseHeaders.find(
           (header) => header.name === "last-modified"
@@ -43,6 +46,10 @@ const Popup: React.FC = () => {
     });
   }, []);
 
+  const handleTabClick = () => {
+    setActiveTab((current) => !current);
+  };
+
   return (
     <>
       <section className="">
@@ -56,41 +63,35 @@ const Popup: React.FC = () => {
           <Dropdown/>
         </div> */}
         <div>
-          <button
-            className="mt-5 ml-2  rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
-            onClick={() =>
-              (document.getElementById("imageId").style.border = "blue solid 3px")
-            }
-          >
+          <button className="mt-5 ml-2 rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]">
             Select All Images
           </button>
-          <button
-            className="mt-5 ml-2  rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
-            onClick={() =>
-              (document.getElementById("imageId").style.border = "")
-            }
-          >
+          <button className="mt-5 ml-2 rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]">
             RemoveSelect
           </button>
         </div>
         {/* <div className="mt-"><Dropdown/></div> */}
         <main className="image-container">
-          <div id="imageId">
+          <div id="">
             {imgs.map((image) => {
-              const { url, format, date, lastModified, expires } = image;
+              const { url, format, date, lastModified, expires, active } =
+                image;
               const headers = format?.value.split("/")[1].toUpperCase();
               return (
                 <>
                   <div
                     className="container mb-6 overflow-hidden rounded bg-white shadow-lg"
-                    id="imageId"
+                    id={image.url}
                   >
                     <img
                       key={url}
                       src={url}
-                      alt="images"
-                      id="imageId"
-                      className="min-h-full min-w-full"
+                      onClick={() => {
+                        return active === true;
+                      }}
+                      className={
+                        active === true ? "border-4 border-red-900" : "opacity-100"
+                      }
                     />
                     <div className="tag">
                       <ul className=" text-black">
