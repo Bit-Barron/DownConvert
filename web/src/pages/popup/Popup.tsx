@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Tabs from "./components/elements/Tabs";
+import Tabs from "./Tabs";
 
 const Popup: React.FC = () => {
   const [shouldShowSearch, setShouldShowSearch] = useState(false);

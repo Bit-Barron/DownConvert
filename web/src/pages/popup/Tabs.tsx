@@ -13,20 +13,26 @@
     ],
   }
   ```
+
 */
 
-const tabs = [
-  { name: "My Accounts", current: false },
-  { name: "Subscription", current: false },
-  { name: "Images", current: true },
-  { name: "Videos", current: false },
-];
+import { useState } from "react";
+import Subscription from "./Subscription";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Tabs() {
+  const [tabs, setTabs] = useState([
+    { name: "My Accounts", current: false },
+    { name: "Subscription", current: false },
+    { name: "Images", current: true },
+    { name: "Videos", current: false },
+  ]);
+
+  const currentMenu = tabs.find((tab) => tab.current);
+
   return (
     <div>
       <div className="sm:hidden">
@@ -41,7 +47,22 @@ export default function Tabs() {
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
-            <option key={tab.name}>{tab.name}</option>
+            <option
+              key={tab.name}
+              onClick={() => {
+                const newTabs = tabs.map((t) => {
+                  if (t.name === tab.name) {
+                    t.current = true;
+                  } else {
+                    t.current = false;
+                  }
+                  return t;
+                });
+                setTabs(newTabs);
+              }}
+            >
+              {tab.name}
+            </option>
           ))}
         </select>
       </div>
@@ -65,6 +86,10 @@ export default function Tabs() {
           </nav>
         </div>
       </div>
+      <div>{currentMenu?.name === "My Accounts" && <div className="text-white text-4xl">tab1</div>}</div>
+      <div>{currentMenu?.name === "Subscription" && <Subscription/>}</div>
+      <div>{currentMenu?.name === "Images" && <div>tab3</div>}</div>
+      <div>{currentMenu?.name === "Videos" && <div>tab3</div>}</div>
     </div>
   );
 }
