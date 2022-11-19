@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Dropdown from "./components/elements/Dropdown";
 import Tabs from "./components/elements/Tabs";
 
 const Popup: React.FC = () => {
@@ -53,9 +52,9 @@ const Popup: React.FC = () => {
         <div>
           <Tabs />
         </div>
-        <div>
+        {/* <div>
           <Dropdown/>
-        </div>
+        </div> */}
         <div>
           <button
             className="mt-5 ml-2  rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
