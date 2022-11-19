@@ -64,30 +64,50 @@ export default function Tabs() {
               {tab.name}
             </option>
           ))}
+          <div>{currentMenu?.name === "Subscription" && <Subscription />}</div>
+          <div>{currentMenu?.name === "Images" && <div>tab3</div>}</div>
+          <div>{currentMenu?.name === "Videos" && <div>tab3</div>}</div>
         </select>
       </div>
       <div className="hidden sm:block">
         <div className="border-b border-gray-200">
           <nav className="-mb-px flex space-x-8" aria-label="Tabs">
             {tabs.map((tab) => (
-              <a
-                key={tab.name}
-                className={classNames(
-                  tab.current
-                    ? "border-[#E96C4C] text-[#E96C4C]"
-                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-                  "group inline-flex items-center border-b-2 py-4 px-1 text-sm font-medium"
-                )}
-                aria-current={tab.current ? "page" : undefined}
-              >
-                <span>{tab.name}</span>
-              </a>
+              <div>
+                <a
+                  key={tab.name}
+                  onClick={() => {
+                    const newTabs = tabs.map((t) => {
+                      if (t.name === tab.name) {
+                        t.current = true;
+                      } else {
+                        t.current = false;
+                      }
+                      return t;
+                    });
+                    setTabs(newTabs);
+                  }}
+                  className={classNames(
+                    tab.current
+                      ? "border-[#E96C4C] text-[#E96C4C]"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                    "group inline-flex items-center border-b-2 py-4 px-1 text-sm font-medium"
+                  )}
+                  aria-current={tab.current ? "page" : undefined}
+                >
+                  <span>{tab.name}</span>
+                </a>
+              </div>
             ))}
           </nav>
         </div>
       </div>
-      <div>{currentMenu?.name === "My Accounts" && <div className="text-white text-4xl">tab1</div>}</div>
-      <div>{currentMenu?.name === "Subscription" && <Subscription/>}</div>
+      <div>
+        {currentMenu?.name === "My Accounts" && (
+          <div className="text-4xl text-white">tab1</div>
+        )}
+      </div>
+      <div>{currentMenu?.name === "Subscription" && <Subscription />}</div>
       <div>{currentMenu?.name === "Images" && <div>tab3</div>}</div>
       <div>{currentMenu?.name === "Videos" && <div>tab3</div>}</div>
     </div>
