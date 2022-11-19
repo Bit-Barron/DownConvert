@@ -84,9 +84,9 @@ const Popup: React.FC = () => {
                       key={url}
                       src={url}
                       onClick={() => {
-                        return active === true;
+                        return active == true;
                       }}
-                      className={active ? "border-2 border-red-900" : ""}
+                      className={active ? " border border-red-900" : ""}
                     />
                     <div className="tag">
                       <ul className=" text-black">
