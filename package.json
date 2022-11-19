@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@headlessui/react": "^1.7.4",
-    "@heroicons/react": "v1",
-    "heroicons-react": "^1.4.1"
-  }
-}
