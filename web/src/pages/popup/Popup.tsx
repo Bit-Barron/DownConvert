@@ -22,7 +22,8 @@ const Popup: React.FC = () => {
 
       const images = requests
         .filter((request) => request.type === "image")
-        .filter((image) => !image.url.toLowerCase().includes("adserver"));
+        .filter((image) => !image.url.toLowerCase().includes("adserver"))
+        .filter((image) => !image.url.toUpperCase().includes("B28763390"));
 
       const imagesData = images.map((image) => ({
         url: image.url,
@@ -53,27 +54,44 @@ const Popup: React.FC = () => {
           <Tabs />
         </div>
         <div>
-          <button className="rounded border  bg-[#E96C4C] py-2 px-4 font-bold text-white border-[#E96C4C] mt-5 ml-2 hover:bg-[#b1523b]">
+          <Dropdown/>
+        </div>
+        <div>
+          <button
+            className="mt-5 ml-2  rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
+            onClick={() =>
+              (document.getElementById("imageId").style.border = "blue solid 3px")
+            }
+          >
             Select All Images
+          </button>
+          <button
+            className="mt-5 ml-2  rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
+            onClick={() =>
+              (document.getElementById("imageId").style.border = "")
+            }
+          >
+            RemoveSelect
           </button>
         </div>
         {/* <div className="mt-"><Dropdown/></div> */}
         <main className="image-container">
-          <div>
+          <div id="imageId">
             {imgs.map((image) => {
               const { url, format, date, lastModified, expires } = image;
               const headers = format?.value.split("/")[1].toUpperCase();
               return (
                 <>
                   <div
-                    className="container mb-6 overflow-hidden rounded bg-white shadow-lg "
-                    id={image.url}
+                    className="container mb-6 overflow-hidden rounded bg-white shadow-lg"
+                    id="imageId"
                   >
                     <img
                       key={url}
                       src={url}
                       alt="images"
-                      className="focus:border-black min-h-full min-w-full focus:outline-red-900"
+                      id="imageId"
+                      className="min-h-full min-w-full"
                     />
                     <div className="tag">
                       <ul className=" text-black">
