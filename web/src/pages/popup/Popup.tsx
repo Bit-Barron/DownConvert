@@ -82,17 +82,28 @@ const Popup: React.FC = ({ children }: any) => {
                             img.active = !img.active;
                           }
                           return img;
-                         });
+                        });
                         setImgs(newImgs);
                       }}
-                      className={
-                        active ? "border-4px border-[4px] border-red-900" : ""
-                      }
+                      className={active ? "border-[4px] border-red-900" : ""}
                     />
-                    <div className="tag">
-                      <ul className=" text-black">
+                    <div
+                      className="tag "
+                      onClick={() => {
+                        const newImgs = imgs.map((img) => {
+                          if (img.url === image.url) {
+                            img.active = !img.active;
+                          }
+                          return img;
+                        });
+                        setImgs(newImgs);
+                      }}
+                    >
+                      <div className="tag">{headers}</div>
+
+                      <ul className="text-tag text-black">
                         <li>Last-Modified: {lastModified?.value} </li>
-                        <li>Format: {headers}</li>
+                        <li className="">Format: {headers}</li>
                         <li>Date: {date?.value} </li>
                         {expires && <li>Expires: {expires?.value} </li>}
                       </ul>
