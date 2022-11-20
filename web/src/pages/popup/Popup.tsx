@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tabs from "./Tabs";
 
-const Popup: React.FC = ({children} : any) => {
+const Popup: React.FC = ({ children }: any) => {
   const [imgs, setImgs] = useState<
     {
       url: string;
@@ -77,9 +77,17 @@ const Popup: React.FC = ({children} : any) => {
                       key={url}
                       src={url}
                       onClick={() => {
-                        return active === true;
+                        const newImgs = imgs.map((img) => {
+                          if (img.url === image.url) {
+                            img.active = !img.active;
+                          }
+                          return img;
+                         });
+                        setImgs(newImgs);
                       }}
-                      className={active ? "border border-red-900" : ""}
+                      className={
+                        active ? "border-4px border border-red-900" : ""
+                      }
                     />
                     <div className="tag">
                       <ul className=" text-black">
