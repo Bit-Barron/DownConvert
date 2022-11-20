@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Tabs from "./Tabs";
 
 const Popup: React.FC = () => {
-  const [shouldShowSearch, setShouldShowSearch] = useState(false);
-  const toggleShowSearch = () => setShouldShowSearch((prev) => !prev);
   const [imgs, setImgs] = useState<
     {
       url: string;
@@ -42,23 +40,19 @@ const Popup: React.FC = () => {
           (header) => header.name === "expires"
         ),
       }));
-      // https://secure.insightexpressai.com/adServer/adServerESI.aspx?script=false&bannerID=10865022&rnd=1668814256864&redir=https://secure.insightexpressai.com/adserver/1pixel.gif
       setImgs(imagesData);
     });
   }, []);
 
   return (
     <>
-      <section className="">
+      <section>
         <h1 className="mb-3 mt-4 text-center text-3xl font-bold text-[#E96C4C]">
           Down<span className="text-[#b65840]">Convert</span>
         </h1>
         <div>
           <Tabs />
         </div>
-        {/* <div>
-          <Dropdown/>
-        </div> */}
         <div>
           <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">
             Select All Images
@@ -67,9 +61,8 @@ const Popup: React.FC = () => {
             RemoveSelect
           </button>
         </div>
-        {/* <div className="mt-"><Dropdown/></div> */}
         <main className="image-container">
-          <div id="">
+          <div>
             {imgs.map((image) => {
               const { url, format, date, lastModified, expires, active } =
                 image;
@@ -84,9 +77,9 @@ const Popup: React.FC = () => {
                       key={url}
                       src={url}
                       onClick={() => {
-                        return active == true;
+                        return active === true;
                       }}
-                      className={active ? " border border-red-900" : ""}
+                      className={active ? "border border-red-900" : ""}
                     />
                     <div className="tag">
                       <ul className=" text-black">
