@@ -22,7 +22,6 @@ body {
 }
 .tag {
   @apply absolute left-0 top-0 float-left bg-[#ffffff] bg-opacity-30 p-[5px] font-bold  text-[#ffffff];
-  z-index: 1000;
 }
 ::-webkit-scrollbar {
   width: 2px;

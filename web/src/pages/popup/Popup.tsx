@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Dropdown from "./components/elements/Dropdown";
 import Tabs from "./Tabs";
 
 const Popup: React.FC = ({ children }: any) => {
@@ -46,7 +47,6 @@ const Popup: React.FC = ({ children }: any) => {
 
   return (
     <>
-
       <section>
         <h1 className="mb-3 mt-4 text-center text-3xl font-bold text-[#E96C4C]">
           Down<span className="text-[#b65840]">Convert</span>
@@ -54,14 +54,20 @@ const Popup: React.FC = ({ children }: any) => {
         <div>
           <Tabs />
         </div>
+        <div className="">
+          <Dropdown />
+        </div>
         <div>
-          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]" onClick={() => {
-            const newImgs = imgs.map((img) => {
-              img.active= true;
+          <button
+            className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
+            onClick={() => {
+              const newImgs = imgs.map((img) => {
+                img.active = !img.active;
+                return img;
+              });
               setImgs(newImgs);
-              return img; 
-            })
-          } }>
+            }}
+          >
             Select All Images
           </button>
         </div>
