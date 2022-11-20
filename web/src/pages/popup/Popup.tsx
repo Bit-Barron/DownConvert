@@ -86,7 +86,7 @@ const Popup: React.FC = ({ children }: any) => {
                         setImgs(newImgs);
                       }}
                       className={
-                        active ? "border-4px border border-red-900" : ""
+                        active ? "border-4px border-[4px] border-red-900" : ""
                       }
                     />
                     <div className="tag">
