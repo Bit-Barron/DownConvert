@@ -57,9 +57,9 @@ const Popup: React.FC = ({ children }: any) => {
         <div className="">
           <Dropdown />
         </div>
-        <div>
+        <div className="flex">
           <button
-            className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
+            className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
             onClick={() => {
               const newImgs = imgs.map((img) => {
                 img.active = !img.active;
@@ -70,6 +70,7 @@ const Popup: React.FC = ({ children }: any) => {
           >
             Select All Images
           </button>
+          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">Convert</button>
         </div>
         <main className="image-container">
           <div>

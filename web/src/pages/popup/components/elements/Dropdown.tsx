@@ -43,13 +43,18 @@ export default function Example() {
         });
 
   return (
-    <Combobox as="div" value={selectedPerson} onChange={setSelectedPerson} className="z-50">
+    <Combobox
+      as="div"
+      value={selectedPerson}
+      onChange={setSelectedPerson}
+      className="z-50"
+    >
       <Combobox.Label className="block text-sm font-medium text-gray-700">
-        Assigned to
+        Convert to
       </Combobox.Label>
-      <div className="relative mt-1">
+      <div className="relative mt-1 ">
         <Combobox.Input
-          className="w-full rounded-md border z-10 border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+          className="z-10 w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(person: any) => person?.name}
         />
