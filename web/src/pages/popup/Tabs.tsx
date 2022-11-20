@@ -17,8 +17,6 @@
 */
 
 import { useState } from "react";
-import Subscription from "./Subscription";
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -64,9 +62,6 @@ export default function Tabs() {
               {tab.name}
             </option>
           ))}
-          <div>{currentMenu?.name === "Subscription" && <Subscription />}</div>
-          <div>{currentMenu?.name === "Images" && <div>tab3</div>}</div>
-          <div>{currentMenu?.name === "Videos" && <div>tab3</div>}</div>
         </select>
       </div>
       <div className="hidden sm:block">
@@ -102,14 +97,13 @@ export default function Tabs() {
           </nav>
         </div>
       </div>
-      <div>
+      {/* <div>
         {currentMenu?.name === "My Accounts" && (
           <div className="text-4xl text-white">tab1</div>
         )}
       </div>
-      <div>{currentMenu?.name === "Subscription" && <Subscription />}</div>
-      <div>{currentMenu?.name === "Images" && <div>tab3</div>}</div>
-      <div>{currentMenu?.name === "Videos" && <div>tab3</div>}</div>
+      <div className="text-white">{currentMenu?.name === "Subscription" && <Subscription />}</div>
+      <div className="text-white">{currentMenu?.name === "Images" && <div>asdas</div>}</div> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tabs from "./Tabs";
 
-const Popup: React.FC = () => {
+const Popup: React.FC = ({children} : any) => {
   const [imgs, setImgs] = useState<
     {
       url: string;
