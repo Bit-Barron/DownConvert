@@ -4,5 +4,5 @@ export default function App() {
   useEffect(() => {
   }, []);
 
-  return <div className="content-view">contenasdt view</div>;
+  return <div className="content-view"></div>;
 }

@@ -46,6 +46,7 @@ const Popup: React.FC = ({ children }: any) => {
 
   return (
     <>
+
       <section>
         <h1 className="mb-3 mt-4 text-center text-3xl font-bold text-[#E96C4C]">
           Down<span className="text-[#b65840]">Convert</span>
@@ -54,11 +55,14 @@ const Popup: React.FC = ({ children }: any) => {
           <Tabs />
         </div>
         <div>
-          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">
+          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]" onClick={() => {
+            const newImgs = imgs.map((img) => {
+              img.active= true;
+              setImgs(newImgs);
+              return img; 
+            })
+          } }>
             Select All Images
-          </button>
-          <button className="mt-5 ml-2 rounded border border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]">
-            RemoveSelect
           </button>
         </div>
         <main className="image-container">
@@ -70,7 +74,9 @@ const Popup: React.FC = ({ children }: any) => {
               return (
                 <>
                   <div
-                    className={`container mb-6 overflow-hidden ${active && "border-[4px] border-red-900"} rounded  bg-white shadow-lg`}
+                    className={`container mb-6 overflow-hidden ${
+                      active && "border-[4px] border-red-900"
+                    } rounded  bg-white shadow-lg`}
                     id={image.url}
                     onClick={() => {
                       const newImgs = imgs.map((img) => {
