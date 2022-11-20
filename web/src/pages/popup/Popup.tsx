@@ -81,6 +81,8 @@ const Popup: React.FC = ({ children }: any) => {
                           if (img.url === image.url) {
                             img.active = !img.active;
                           }
+                          console.log(newImgs);
+
                           return img;
                         });
                         setImgs(newImgs);
