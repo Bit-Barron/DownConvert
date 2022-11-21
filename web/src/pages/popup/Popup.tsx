@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "./components/elements/Dropdown";
 import Tabs from "./Tabs";
+import axios from "axios";
 
 const Popup: React.FC = ({ children }: any) => {
   const [imgs, setImgs] = useState<
@@ -70,7 +71,9 @@ const Popup: React.FC = ({ children }: any) => {
           >
             Select All Images
           </button>
-          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">Convert</button>
+          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">
+            Convert
+          </button>
         </div>
         <main className="image-container">
           <div>
