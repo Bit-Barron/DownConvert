@@ -1,7 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller("api")
+@Controller('api')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -10,8 +10,10 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/imgs')
+  @Post('imgs')
   getImgUrl() {
-    return 'hello';
+    console.log('getImgUrl');
+    return "img url"; 
   }
 }
+
