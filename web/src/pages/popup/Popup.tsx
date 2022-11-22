@@ -45,7 +45,11 @@ const Popup: React.FC = ({ children }: any) => {
       setImgs(imagesData);
     });
   }, []);
-  console.log("sdaf")
+  console.log("sdaf");
+
+  const sendimgUrl = (url: string) => {
+    axios.post("http://localhost:3000/api/images", { url: url });
+  };
 
   return (
     <>
