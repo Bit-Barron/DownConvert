@@ -45,6 +45,7 @@ const Popup: React.FC = ({ children }: any) => {
       setImgs(imagesData);
     });
   }, []);
+  console.log("sdaf")
 
   return (
     <>
