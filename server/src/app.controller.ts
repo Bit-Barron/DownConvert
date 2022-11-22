@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('api')
@@ -11,9 +11,8 @@ export class AppController {
   }
 
   @Post('imgs')
-  getImgUrl() {
-    console.log('getImgUrl');
-    return "img url"; 
+  getImgUrl(@Body ) {
+  
   }
 }
 

@@ -47,7 +47,9 @@ const Popup: React.FC = ({ children }: any) => {
   }, []);
 
   const sendimgUrl = async (url: string) => {
-    const res = await axios.post("http://localhost:3000/api/imgs", { url: url });
+    const res = await axios.post("http://localhost:3000/api/imgs", {
+      url: url,
+    });
     console.log(res.data);
   };
 
@@ -79,7 +81,6 @@ const Popup: React.FC = ({ children }: any) => {
           <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">
             Convert
           </button>
-          button
           <button
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
             onClick={() => sendimgUrl(imgs[0].url)}
