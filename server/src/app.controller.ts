@@ -1,6 +1,9 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Imgurl } from './types';
+import fs from 'fs';
+import axios from 'axios';
+import path from 'path';
 
 @Controller('api')
 export class AppController {

@@ -15,7 +15,7 @@ const Popup: React.FC = ({ children }: any) => {
       active: boolean;
     }[]
   >([]);
-
+  
   useEffect(() => {
     chrome.storage.local.get(null, (items) => {
       const requests = Object.values(items) as [
