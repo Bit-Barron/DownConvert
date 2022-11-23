@@ -75,14 +75,14 @@ const Popup: React.FC = ({ children }: any) => {
           <button
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
             onClick={() => {
-              const arr = [];
-              const newImgs = imgs.map((img) => {
+              const reqArr: any = [];
+              const newImgs = imgs.map((img, arr) => {
                 img.active = !img.active;
-                arr.push(img)
-                sendAllselectedImages(img.url);
+                reqArr.push(arr);
                 return img;
               });
               setImgs(newImgs);
+              sendAllselectedImages(reqArr);
             }}
           >
             Select All Images
