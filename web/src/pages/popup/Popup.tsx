@@ -76,9 +76,9 @@ const Popup: React.FC = ({ children }: any) => {
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
             onClick={() => {
               const reqArr: any = [];
-              const newImgs = imgs.map((img, arr) => {
+              const newImgs = imgs.map((img) => {
                 img.active = !img.active;
-                reqArr.push(arr);
+                reqArr.push(img);
                 return img;
               });
               setImgs(newImgs);
