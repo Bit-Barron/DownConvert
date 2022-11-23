@@ -1,3 +1,3 @@
-export class ExampleDto {
-    url: string;
+export type Imgurl = {
+  url: string;
 }
