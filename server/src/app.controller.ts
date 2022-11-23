@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Imgurl } from './types';
 import fs from 'fs';
-import axios from 'axios';
 import path from 'path';
+import axios from 'axios';
 
 @Controller('api')
 export class AppController {
@@ -15,8 +15,8 @@ export class AppController {
   }
 
   @Post('imgs')
-  getImgUrl(@Body() message: Imgurl[]) {
+  async getImgUrl(@Body() message: Imgurl[]) {
     console.log(message);
-    return message;
+    
   }
 }

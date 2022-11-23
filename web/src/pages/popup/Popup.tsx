@@ -15,7 +15,7 @@ const Popup: React.FC = ({ children }: any) => {
       active: boolean;
     }[]
   >([]);
-  
+
   useEffect(() => {
     chrome.storage.local.get(null, (items) => {
       const requests = Object.values(items) as [
@@ -54,7 +54,7 @@ const Popup: React.FC = ({ children }: any) => {
   };
 
   const sendAllselectedImages = async (url: string) => {
-    const response = await axios.post("http://localhost:3000/api/imgs", {
+    const res = await axios.post("http://localhost:3000/api/imgs", {
       url: url,
     });
   };
@@ -68,12 +68,12 @@ const Popup: React.FC = ({ children }: any) => {
         <div>
           <Tabs />
         </div>
-        <div className="">
+        <div>
           <Dropdown />
         </div>
         <div className="flex">
           <button
-            className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
+            className="mt-5 ml-2 rounded border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
             onClick={() => {
               const reqArr: any = [];
               const newImgs = imgs.map((img) => {
@@ -87,9 +87,9 @@ const Popup: React.FC = ({ children }: any) => {
           >
             Select All Images
           </button>
-          <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] ">
+          {/* <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]">
             Convert
-          </button>
+          </button> */}
           <button
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
             onClick={() => sendimgUrl(imgs[0].url)}
