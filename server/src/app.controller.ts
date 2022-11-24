@@ -16,13 +16,13 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() message: Imgurl[]) {
-    const url = 'https://unsplash.com/photos/wpMQWrjwPLs/download?force=true';
+    const url = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg';
+    const path = Path.resolve(__dirname, 'files', 'image.jpg');
     const response = await Axios({
       method: 'GET',
       url: url,
       responseType: 'stream',
     });
-    const path = Path.resolve(__dirname, 'files', 'image.png');
 
     response.data.pipe(fs.createWriteStream(path));
 
@@ -37,5 +37,6 @@ export class AppController {
 
       console.log(message);
     });
+
   }
 }
