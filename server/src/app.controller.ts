@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Imgurl } from './types';
-import fs from 'fs';
-import path from 'path';
-import axios from 'axios';
+import * as fs from 'fs';
+import * as Path from 'path'
+import Axios from 'axios';
 
 @Controller('api')
 export class AppController {
@@ -16,7 +16,26 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() message: Imgurl[]) {
-    console.log(message);
-    
+    const url = 'https://unsplash.com/photos/s_312j8sJrA';
+    const path = Path.resolve(__dirname, 'files', 'image.jpg');
+    const response = await Axios({
+      method: 'GET',
+      url: url,
+      responseType: 'stream',
+    });
+
+    response.data.pipe(fs.createWriteStream(path));
+
+    return new Promise<void>((resolve, reject) => {
+      response.data.on('end', () => {
+        resolve();
+      });
+
+      response.data.on('error', (err) => {
+        reject(err);
+      });
+
+      console.log(message);
+    });
   }
 }
