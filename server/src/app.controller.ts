@@ -17,7 +17,7 @@ export class AppController {
   @Post('imgs')
   async getImgUrl(@Body() message: Imgurl[]) {
     const url = 'https://unsplash.com/photos/wpMQWrjwPLs/download?force=true';
-    const path = Path.resolve(__dirname, 'files', 'landscape.jpg');
+    const path = Path.resolve(__dirname, 'files', 'image.png');
     const response = await Axios({
       method: 'GET',
       url: url,
