@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Imgurl } from './types';
 import * as fs from 'fs';
-import * as Path from 'path'
+import * as Path from 'path';
 import Axios from 'axios';
 
 @Controller('api')
@@ -37,5 +37,6 @@ export class AppController {
 
       console.log(message);
     });
+
   }
 }
