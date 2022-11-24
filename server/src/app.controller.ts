@@ -16,12 +16,7 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() message: Imgurl[]) {
-    const url = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg';
-    const array = [];
-    for(let image of message) {
-      const res = array.push(image.url);
-      console.log(res)
-    }
+    const url = 'https://unsplash.com/photos/s_312j8sJrA';
     const path = Path.resolve(__dirname, 'image.jpg');
     const response = await Axios({
       method: 'GET',
