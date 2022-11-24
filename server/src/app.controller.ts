@@ -16,7 +16,12 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() message: Imgurl[]) {
-    const url = message[0].url;
+    const url = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg';
+    const array = [];
+    for(let image of message) {
+      const res = array.push(image.url);
+      console.log(res)
+    }
     const path = Path.resolve(__dirname, 'image.jpg');
     const response = await Axios({
       method: 'GET',
@@ -37,6 +42,5 @@ export class AppController {
 
       console.log(message);
     });
-
   }
 }
