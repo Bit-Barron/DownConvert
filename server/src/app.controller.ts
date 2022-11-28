@@ -15,8 +15,11 @@ export class AppController {
   }
 
   @Post('imgs')
-  async getImgUrl(@Body() message: Imgurl[]) {
+  async getImgUrl(@Body() images: Imgurl[]) {
     const url = 'https://unsplash.com/photos/s_312j8sJrA';
+    for(let image of images) {
+      
+    }
     const path = Path.resolve(__dirname, 'image.jpg');
     const response = await Axios({
       method: 'GET',
@@ -35,7 +38,7 @@ export class AppController {
         reject(err);
       });
 
-      console.log(message);
+      console.log(images);
     });
   }
 }
