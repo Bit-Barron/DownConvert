@@ -50,7 +50,6 @@ const Popup: React.FC = ({ children }: any) => {
     const res = await axios.post("http://localhost:3000/api/imgs", {
       url: url,
     });
-    console.log(res.data);
   };
 
   const sendAllselectedImages = async (url: string) => {

@@ -8,7 +8,7 @@ import Axios from 'axios';
 @Controller('api')
 export class AppController {
   constructor(private readonly appService: AppService) {}
-  console.log("wdf")
+
   @Get()
   getHello(): string {
     return this.appService.getHello();
@@ -17,9 +17,6 @@ export class AppController {
   @Post('imgs')
   async getImgUrl(@Body() message: Imgurl[]) {
     const url = 'https://unsplash.com/photos/s_312j8sJrA';
-    for(let image of message) {
-      
-    }
     const path = Path.resolve(__dirname, 'image.jpg');
     const response = await Axios({
       method: 'GET',
