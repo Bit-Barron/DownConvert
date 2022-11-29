@@ -16,17 +16,15 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() images: Imgurl[]) {
-    const url = 'https://unsplash.com/photos/s_312j8sJrA';
-
-    const path = Path.resolve(__dirname, 'image.jpg');
-    const response = await Axios({
-      method: 'GET',
-      url: url,
-      responseType: 'stream',
-    });
-
+    for(let image of images) {
+      const url = image.url;
+      const path = Path.resolve(__dirname, 'image.jpg');
+      const response = await Axios({
+        method: 'GET',
+        url: url,
+        responseType: 'stream',
+      });
     response.data.pipe(fs.createWriteStream(path));
-
     return new Promise<void>((resolve, reject) => {
       response.data.on('end', () => {
         resolve();
@@ -38,5 +36,11 @@ export class AppController {
 
       console.log(images);
     });
+    }
+
+
+
+
+ 
   }
 }
