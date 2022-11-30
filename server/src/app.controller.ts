@@ -37,10 +37,5 @@ export class AppController {
       console.log(images);
     });
     }
-
-
-
-
- 
   }
 }
