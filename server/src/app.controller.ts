@@ -30,7 +30,7 @@ export class AppController {
         resolve();
       });
 
-      response.data.on('error', (err) => {
+      response.data.on('error', (err: any) => {
         reject(err);
       });
 
