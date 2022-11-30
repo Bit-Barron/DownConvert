@@ -12,11 +12,12 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+    const x = 12;
   }
 
   @Post('imgs')
   async getImgUrl(@Body() images: Imgurl[]) {
-    for(let image of images) {
+    for (let image of images) {
       const url = image.url;
       const path = Path.resolve(__dirname, 'image.jpg');
       const response = await Axios({
@@ -24,18 +25,20 @@ export class AppController {
         url: url,
         responseType: 'stream',
       });
-    response.data.pipe(fs.createWriteStream(path));
-    return new Promise<void>((resolve, reject) => {
-      response.data.on('end', () => {
-        resolve();
-      });
+      response.data.pipe(fs.createWriteStream(path));
+      return new Promise<void>((resolve, reject) => {
+        response.data.on('end', () => {
+          resolve();
+        });
 
-      response.data.on('error', (err) => {
-        reject(err);
-      });
+        response.data.on('error', (err) => {
+          reject(err);
+        });
 
-      console.log(images);
-    });
+        console.log(images);
+      });
     }
   }
 }
+
+
