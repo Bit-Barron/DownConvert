@@ -12,13 +12,15 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
-    const x = 12;
   }
 
   @Post('imgs')
   async getImgUrl(@Body() images: Imgurl[]) {
     const url = 'https://unsplash.com/photos/GSbapSDEsXE';
     const path = Path.resolve(__dirname, 'image.jpg');
+    for (let image of images) {
+      const res = await Axios.get(image.url, { responseType: 'stream' });
+    }
     const response = await Axios({
       method: 'GET',
       url: url,
