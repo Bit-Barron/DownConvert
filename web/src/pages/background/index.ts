@@ -1,6 +1,5 @@
 chrome.webRequest.onCompleted.addListener(
   (details) => {
-
     chrome.storage.local.set({ [`${details.timeStamp}`]: details });
 
     // chrome.runtime.sendMessage({
@@ -9,10 +8,10 @@ chrome.webRequest.onCompleted.addListener(
     // });
   },
   { urls: ["<all_urls>"] },
-  ['responseHeaders', 'extraHeaders']
+  ["responseHeaders", "extraHeaders"]
 );
 chrome.storage.local.clear(function () {
-  var error = chrome.runtime.lastError;
+  const error = chrome.runtime.lastError;
   if (error) {
     console.error(error);
   }

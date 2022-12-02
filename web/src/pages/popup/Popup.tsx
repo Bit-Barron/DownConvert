@@ -3,18 +3,18 @@ import Dropdown from "./components/elements/Dropdown";
 import Tabs from "./Tabs";
 import axios from "axios";
 
-const Popup: React.FC = ({ children }: any) => {
-  const [imgs, setImgs] = useState<
-    {
-      url: string;
-      headers: chrome.webRequest.HttpHeader[];
-      lastModified: chrome.webRequest.HttpHeader;
-      format: chrome.webRequest.HttpHeader;
-      date: chrome.webRequest.HttpHeader;
-      expires: chrome.webRequest.HttpHeader;
-      active: boolean;
-    }[]
-  >([]);
+interface Image {
+  url: string;
+  headers: chrome.webRequest.HttpHeader[];
+  lastModified: chrome.webRequest.HttpHeader;
+  format: chrome.webRequest.HttpHeader;
+  date: chrome.webRequest.HttpHeader;
+  expires: chrome.webRequest.HttpHeader;
+  active: boolean;
+}
+
+const Popup: React.FC = () => {
+  const [imgs, setImgs] = useState<Image[]>([]);
 
   useEffect(() => {
     chrome.storage.local.get(null, (items) => {
@@ -27,7 +27,11 @@ const Popup: React.FC = ({ children }: any) => {
         .filter((image) => !image.url.toLowerCase().includes("adserver"))
         .filter((image) => !image.url.toUpperCase().includes("B28763390"));
 
-      const imagesData = images.map((image) => ({
+      const filteredImages = images.filter(
+        (v, i, a) => a.findIndex((t) => t.url === v.url) === i
+      );
+
+      const imagesData = filteredImages.map((image) => ({
         url: image.url,
         active: false,
         headers: image.responseHeaders,
@@ -46,16 +50,8 @@ const Popup: React.FC = ({ children }: any) => {
     });
   }, []);
 
-  const sendimgUrl = async (url: string) => {
-    const res = await axios.post("http://localhost:3000/api/imgs", {
-      url: url,
-    });
-  };
-
-  const sendAllselectedImages = async (url: string[]) => {
-    const res = await axios.post("http://localhost:3000/api/imgs", {
-      url: url,
-    });
+  const sendImages = async (images: Image[]) => {
+    await axios.post("http://localhost:3000/api/imgs", images);
   };
 
   return (
@@ -73,30 +69,21 @@ const Popup: React.FC = ({ children }: any) => {
         <div className="flex">
           <button
             className="mt-5 ml-2 rounded border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
-            onClick={() => {
-              const reqArr: any[] = [];
-              const newImgs = imgs.map((img) => {
-                img.active = !img.active;
-                return img;
-              });
-              setImgs(newImgs);
-            }}
+            onClick={() =>
+              setImgs(
+                imgs.map((img) => ({
+                  ...img,
+                  active: !img.active,
+                }))
+              )
+            }
           >
             Select All Images
           </button>
 
           <button
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
-            onClick={() => {
-              const reqArr: any[] = [];
-              const newImgs = imgs.map((img) => {
-                if (img.active === true) {
-                  reqArr.push(img.url);
-                }
-              });
-              sendAllselectedImages(reqArr);
-
-            }}
+            onClick={() => sendImages(imgs.filter((img) => img.active))}
           >
             Download
           </button>
@@ -115,13 +102,16 @@ const Popup: React.FC = ({ children }: any) => {
                     } rounded  bg-white shadow-lg`}
                     id={image.url}
                     onClick={() => {
-                      const newImgs = imgs.map((img) => {
-                        if (img.url === image.url) {
-                          img.active = !img.active;
-                        }
-                        return img;
-                      });
-                      setImgs(newImgs);
+                      setImgs(
+                        imgs.map((img) =>
+                          img.url === image.url
+                            ? {
+                                ...img,
+                                active: !img.active,
+                              }
+                            : img
+                        )
+                      );
                     }}
                   >
                     <img key={url} src={url} />

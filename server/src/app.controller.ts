@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Imgurl } from './types';
-import * as fs from 'fs';
-import * as Path from 'path';
 import Axios from 'axios';
+import fs from 'fs';
+import path from 'path';
+import axios from 'axios';
 
 @Controller('api')
 export class AppController {
@@ -15,27 +15,21 @@ export class AppController {
   }
 
   @Post('imgs')
-  async getImgUrl(@Body() images: Imgurl) {
-    for (let image of images["url"]) {
-      const im = images[0].url;
-      console.log(im);
-    }
-    const url = 'https://unsplash.com/photos/GSbapSDEsXE';
-    const path = Path.resolve(__dirname, 'image.jpg');
-    const response = await Axios({
-      method: 'GET',
-      url: url,
-      responseType: 'stream',
-    });
-    response.data.pipe(fs.createWriteStream(path));
-    return new Promise<void>((resolve, reject) => {
-      response.data.on('end', () => {
-        resolve();
-      });
+  async getImgUrl(@Body() images: Image[]) {
+    const imagePath = path.join(path.resolve(), 'images');
+    fs.mkdirSync(imagePath, { recursive: true });
 
-      response.data.on('error', (err: any) => {
-        reject(err);
-      });
-    });
+    for (const image of images) {
+      const name = new URL(image.url).pathname.split('/').slice(-1)[0];
+      const imageType = image.headers
+        .find((header) => header.name.toLowerCase() === 'content-type')
+        ?.value.replace('image/', '');
+      const fileName = `${name}.${imageType}`;
+
+      const response = await axios.get(image.url, { responseType: 'stream' });
+      response.data.pipe(fs.createWriteStream(path.join(imagePath, fileName)));
+    }
+
+    return '';
   }
 }
