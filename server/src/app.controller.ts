@@ -16,8 +16,12 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() images: Imgurl[]) {
-    for(let image of images) {
-      console.log(image.url)
+    if (images && images.length > 0) {
+      console.log('asasd');
+    } else {
+      for (let image of images) {
+        console.log(image.url);
+      }
     }
 
     const url = 'https://unsplash.com/photos/GSbapSDEsXE';
