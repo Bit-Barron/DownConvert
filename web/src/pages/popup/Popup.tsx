@@ -52,7 +52,7 @@ const Popup: React.FC = ({ children }: any) => {
     });
   };
 
-  const sendAllselectedImages = async (url: string) => {
+  const sendAllselectedImages = async (url: string[]) => {
     const res = await axios.post("http://localhost:3000/api/imgs", {
       url: url,
     });
@@ -74,7 +74,7 @@ const Popup: React.FC = ({ children }: any) => {
           <button
             className="mt-5 ml-2 rounded border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b] "
             onClick={() => {
-              const reqArr: any = [];
+              const reqArr: any[] = [];
               const newImgs = imgs.map((img) => {
                 img.active = !img.active;
                 return img;
@@ -84,17 +84,17 @@ const Popup: React.FC = ({ children }: any) => {
           >
             Select All Images
           </button>
-          {/* <button className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]">
-            Convert
-          </button> */}
+
           <button
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
             onClick={() => {
-              const reqArr: any = [];
+              const reqArr: any[] = [];
               const newImgs = imgs.map((img) => {
-                reqArr.push(img);
-                sendAllselectedImages(reqArr);
+                if (img.active === true) {
+                  reqArr.push(img);
+                }
               });
+              sendAllselectedImages(reqArr);
             }}
           >
             Download
