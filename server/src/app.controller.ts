@@ -16,14 +16,7 @@ export class AppController {
 
   @Post('imgs')
   async getImgUrl(@Body() images: Imgurl[]) {
-    for (let image of Object.keys(images)) {
-      if(images === undefined) {
-        return;
-      } else {
-        const url = images[image].url;
-        console.log(url)
-      }
-    }
+    console.log(images);
 
     const url = 'https://unsplash.com/photos/GSbapSDEsXE';
     const path = Path.resolve(__dirname, 'image.jpg');
