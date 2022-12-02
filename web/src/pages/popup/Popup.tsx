@@ -77,11 +77,9 @@ const Popup: React.FC = ({ children }: any) => {
               const reqArr: any = [];
               const newImgs = imgs.map((img) => {
                 img.active = !img.active;
-                reqArr.push(img);
                 return img;
               });
               setImgs(newImgs);
-              sendAllselectedImages(reqArr);
             }}
           >
             Select All Images
@@ -91,7 +89,13 @@ const Popup: React.FC = ({ children }: any) => {
           </button> */}
           <button
             className="mt-5 ml-2 rounded  border-[#E96C4C] bg-[#E96C4C] py-2 px-4 font-bold text-white hover:bg-[#b1523b]"
-            onClick={() => sendimgUrl(imgs[0].url)}
+            onClick={() => {
+              const reqArr: any = [];
+              const newImgs = imgs.map((img) => {
+                reqArr.push(img);
+                sendAllselectedImages(reqArr);
+              });
+            }}
           >
             Download
           </button>
