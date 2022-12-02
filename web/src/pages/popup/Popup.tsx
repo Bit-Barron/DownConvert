@@ -91,10 +91,11 @@ const Popup: React.FC = ({ children }: any) => {
               const reqArr: any[] = [];
               const newImgs = imgs.map((img) => {
                 if (img.active === true) {
-                  reqArr.push(img);
+                  reqArr.push(img.url);
                 }
               });
               sendAllselectedImages(reqArr);
+
             }}
           >
             Download
