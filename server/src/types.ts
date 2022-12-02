@@ -1,3 +1,3 @@
 export type Imgurl = {
-  url: string;
+  url: Array<string>;
 };

@@ -15,8 +15,11 @@ export class AppController {
   }
 
   @Post('imgs')
-  async getImgUrl(@Body() images: Imgurl[]) {
-    console.log(images);
+  async getImgUrl(@Body() images: Imgurl) {
+    for (let image of images["url"]) {
+      const im = images[0].url;
+      console.log(im);
+    }
     const url = 'https://unsplash.com/photos/GSbapSDEsXE';
     const path = Path.resolve(__dirname, 'image.jpg');
     const response = await Axios({
