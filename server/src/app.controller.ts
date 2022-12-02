@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import Axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
