@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  width: 450px;
+  height: 700px;
+  background-color: #141e24;
+}
+
+.downloads_container {
+  top: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+::-webkit-scrollbar {
+  @apply h-[20px] w-[2px];
+}
+::-webkit-scrollbar-button {
+  @apply h-0 w-0;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-t from-transparent via-primary to-transparent;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  @apply bg-gradient-to-l from-transparent via-primary to-transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb:active {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-track:hover {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-track:active {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-corner {
+  @apply bg-transparent;
+}
