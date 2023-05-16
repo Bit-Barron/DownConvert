@@ -4,7 +4,6 @@ import { IMAGE_FORMATS } from "../../utils/constants";
 import { FormatCombox } from "../elements/Combox";
 import axios from "axios";
 
-
 export const ImageDownload: React.FC = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const { images } = ImageStore();

@@ -27,7 +27,7 @@ export const Images = () => {
       }
     });
   }, []);
-
+  
   return (
     <section>
       <div className="mt-6">
