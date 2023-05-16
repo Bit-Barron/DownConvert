@@ -7,7 +7,9 @@ import { Tabs } from "./elements/Tabs";
 export const Images = () => {
   const { upsertImage } = ImageStore();
 
+
   useEffect(() => {
+    console.log(chrome.storage)
     chrome.storage.local.get(null, (items) => {
       const requests = Object.values(items) as [
         chrome.webRequest.WebResponseCacheDetails
@@ -27,7 +29,7 @@ export const Images = () => {
       }
     });
   }, []);
-  
+
   return (
     <section>
       <div className="mt-6">
