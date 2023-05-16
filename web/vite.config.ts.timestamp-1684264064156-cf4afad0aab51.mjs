@@ -6,7 +6,7 @@ import { crx } from "file:///home/barron/Desktop/downconvert/node_modules/@crxjs
 // manifest.json
 var manifest_default = {
   manifest_version: 3,
-  name: "CRXJS React Vite Example",
+  name: "DownConvert",
   version: "1.0.0",
   action: { default_popup: "index.html" }
 };
