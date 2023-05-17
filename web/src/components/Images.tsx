@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import { ImageStore } from "../store/ImageStore";
 import { ImageMasonry } from "./images/ImageMasonry";
-import { Tabs } from "./elements/Tabs";
-
 
 export const Images = () => {
   const { upsertImage } = ImageStore();
-
 
   useEffect(() => {
     console.log(chrome.storage)
@@ -32,11 +29,10 @@ export const Images = () => {
 
   return (
     <section>
+      {/* <ImageDownload /> */}
       <div className="mt-6">
         <ImageMasonry />
       </div>
-      <Tabs />
-      {/* <ImageDownload /> */}
     </section>
   );
 };

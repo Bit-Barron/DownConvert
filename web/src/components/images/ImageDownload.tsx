@@ -7,7 +7,7 @@ import axios from "axios";
 export const ImageDownload: React.FC = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const { images } = ImageStore();
-  const { format, setFormat } = ImageStore();
+  const { format } = ImageStore();
 
   const sendImages = async (images: Image[]): Promise<void> => {
     const response = await axios.post(
@@ -36,7 +36,7 @@ export const ImageDownload: React.FC = () => {
     <div className="downloads_container fixed flex w-full justify-between bg-downloadContainer p-3">
       <FormatCombox
         format={format}
-        setFormat={setFormat}
+        setFormat={() => ""}
         formats={IMAGE_FORMATS}
       />
       <div>

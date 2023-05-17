@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { IMAGE_FORMATS, VIDEO_FORMATS } from "../../utils/constants";
+import { VIDEO_FORMATS } from "../../utils/constants";
 import { FormatCombox } from "../elements/Combox";
 
 export const VideoDownloader = () => {
