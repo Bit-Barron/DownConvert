@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ImageStore } from "../store/ImageStore";
 import { ImageMasonry } from "./images/ImageMasonry";
+import { ImageDownload } from "./images/ImageDownload";
 
 export const Images = () => {
   const { upsertImage } = ImageStore();
@@ -29,7 +30,7 @@ export const Images = () => {
 
   return (
     <section>
-      {/* <ImageDownload /> */}
+      <ImageDownload />
       <div className="mt-6">
         <ImageMasonry />
       </div>

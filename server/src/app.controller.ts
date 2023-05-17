@@ -17,8 +17,8 @@ export class AppController {
     @Res() reply: FastifyReply,
   ) {
     const { images, type } = payload;
-    const imagePath = path.join(path.resolve(), 'images');
-    fs.mkdirSync(imagePath, { recursive: true });
+    const imagePath = path?.join(path.resolve(), 'images');
+    fs?.mkdirSync(imagePath, { recursive: true });
 
     const zip = new JSZip();
 
