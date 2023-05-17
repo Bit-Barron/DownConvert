@@ -21,4 +21,12 @@ export const IMAGE_FORMATS = [
   "jxl",
 ] as const;
 
+
+export const VIDEO_FORMATS = [
+  "BFI",
+  "CAF",
+  "FLV",
+  "GIF"
+] as const;
+export type VideoFormat = typeof VIDEO_FORMATS[number]
 export type ImageFormat = typeof IMAGE_FORMATS[number];
