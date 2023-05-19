@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import fs from 'fs';
 import path from 'path';
@@ -17,8 +17,8 @@ export class AppController {
     @Res() reply: FastifyReply,
   ) {
     const { images, type } = payload;
-    const imagePath = path?.join(path.resolve(), 'images');
-    fs?.mkdirSync(imagePath, { recursive: true });
+    const imagePath = path.join(path.resolve(), 'images');
+    fs.mkdirSync(imagePath, { recursive: true });
 
     const zip = new JSZip();
 
@@ -55,10 +55,9 @@ export class AppController {
 
     return zipFileName;
   }
+  
   @Post('videos')
   async getVideoUrl(@Body() payload: { videos: Video[]; type: string }) {
     const { videos, type } = payload;
-
-    console.log({ videos, type });
   }
 }

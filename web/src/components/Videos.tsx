@@ -1,21 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
 import { VideoStore } from "../store/VideoStore";
-import { VideoDownloader } from "./videos/VideoDownloader";
+import { VideoDownloader } from "./videos/VideoDownload";
 
 
 export const Videos: React.FC = () => {
   const { video } = VideoStore();
-  // const [video, setVideo] = useState<Video[]>([]);
   const [type] = useState<string>("");
 
 
   const sendVideos = async (videos: Video[]): Promise<void> => {
-    const response = await axios.post("http://localhost:3000/api/videos", {
+    await axios.post("http://localhost:3000/api/videos", {
       videos,
       type,
     });
-    console.log(response.data);
   };
 
   return (

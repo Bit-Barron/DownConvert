@@ -10,6 +10,7 @@ module.exports = {
         secondary: "#f2f2f2",
         downloadContainer: "#1a252c",
         primaryhover: "#340a71",
+        combox: "#1f2223"
       },
     },
   },
