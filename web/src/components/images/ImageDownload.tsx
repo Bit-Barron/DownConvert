@@ -15,7 +15,7 @@ export const ImageDownload: React.FC = () => {
       "http://localhost:3000/api/imgs",
       {
         images,
-        type: format,
+        format,
       },
       {
         responseType: "blob",
