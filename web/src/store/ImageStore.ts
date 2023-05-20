@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { ImageFormat } from "../utils/constants";
 
-interface ImageStore {
+export type ImageStore = {
   format: ImageFormat;
   setFormat: (format: ImageFormat) => void;
 

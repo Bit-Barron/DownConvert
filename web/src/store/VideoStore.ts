@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-interface VideoStore {
+export type VideoStore = {
   video: Video[];
   setVideo: (video: Video[]) => void;
 }

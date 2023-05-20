@@ -4,26 +4,28 @@ import { BsImages } from "react-icons/bs";
 import { MdVideoSettings } from "react-icons/md";
 import { classNames } from "../../utils/helpers";
 import { GeneralStore } from "../../store/GeneralStore";
+import { ImageStore } from "../../store/ImageStore";
+import { VideoStore } from "../../store/VideoStore";
 
 export const Tabs: React.FC = () => {
   const { setTab } = GeneralStore();
+  const { images } = ImageStore();
+  const { video } = VideoStore();
+
   const tabs = [
     {
-      href: "#",
       current: false,
       icon: <BsImages />,
-      count: 100,
+      count: images.length,
       onClick: () => setTab("image"),
     },
     {
-      href: "#",
       current: false,
       icon: <MdVideoSettings />,
-      count: "10",
+      count: video.length,
       onClick: () => setTab("video"),
     },
     {
-      href: "#",
       count: "100",
       current: false,
       icon: <AiOutlineScan />,
@@ -48,7 +50,7 @@ export const Tabs: React.FC = () => {
               >
                 {tab.count}
               </span>
-            ) : null}{" "}
+            ) : null}
           </div>
         ))}
       </div>

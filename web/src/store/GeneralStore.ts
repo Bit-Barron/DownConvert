@@ -3,7 +3,7 @@ import { immer } from "zustand/middleware/immer";
 
 type Tab = "image" | "video";
 
-interface GeneralStore {
+export type GeneralStore =  {
   tab: Tab;
   setTab: (tab: Tab) => void;
 }
