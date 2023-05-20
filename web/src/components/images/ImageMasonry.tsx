@@ -7,7 +7,8 @@ import styles from "./styles.module.css";
 import shuffle from "lodash.shuffle";
 
 export const ImageMasonry: React.FC = () => {
-  const { images, setAllImages, setSelectedImage } = ImageStore();
+  const { images, setAllImages, setSelectedImage, selectedImages } = ImageStore();
+  console.log(selectedImages)
 
   const columns = useMedia(
     ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],

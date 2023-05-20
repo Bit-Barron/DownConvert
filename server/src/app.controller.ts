@@ -1,19 +1,18 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import { AppService } from './app.service';
-import * as fs from 'fs';
-import * as  path from 'path';
+import fs from 'fs';
+import path from 'path';
 import axios from 'axios';
-import  sharp, { FormatEnum } from 'sharp';
-import * as JSZip from 'jszip';
+import sharp, { FormatEnum } from 'sharp';
+import JSZip from 'jszip';
 import { FastifyReply } from 'fastify';
 
 @Controller('api')
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
   @Post('imgs')
   async getImgUrl(
-    @Body() payload: { images: Image[]; format: string; },
+    @Body() payload: { images: Image[]; format: string;},
     @Res() reply: FastifyReply,
   ) {
     const { images, format } = payload;
@@ -22,12 +21,15 @@ export class AppController {
 
     const zip = new JSZip();
 
+
     // iterate for each image
     for (const image of images) {
+      console.log(image)
       const name = new URL(image.url).pathname.split('/').slice(-1)[0];
-      const imageType = (image.headers || [])
-      .find((header) => header.name.toLowerCase() === 'content-type')
+      const imageType = image.headers
+      ?.find((header) => header.name.toLowerCase() === 'content-type')
       ?.value.replace('image/', '');
+
 
       const response = await axios.get(image.url, {
         responseType: 'arraybuffer',
@@ -55,9 +57,9 @@ export class AppController {
 
     return zipFileName;
   }
-
   @Post('videos')
   async getVideoUrl(@Body() payload: { videos: Video[]; type: string }) {
     const { videos, type } = payload;
+
   }
 }

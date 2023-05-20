@@ -6,9 +6,8 @@ import axios from "axios";
 
 export const ImageDownload: React.FC = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
-  const { format, setFormat, images } = ImageStore();
+  const { format, setFormat, selectedImages } = ImageStore();
 
-  console.log(format)
 
   const sendImages = async (images: Image[]): Promise<void> => {
     const response = await axios.post(
@@ -43,7 +42,7 @@ export const ImageDownload: React.FC = () => {
       <div>
         <button
           className="rounded  bg-primary px-5 py-2 font-bold text-white"
-          onClick={() => sendImages(images)}
+          onClick={() => sendImages(selectedImages)}
         >
           Download
         </button>
