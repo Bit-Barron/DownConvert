@@ -1,5 +1,33 @@
 chrome.webRequest.onCompleted.addListener(
   (details) => {
+    const videoExtensions = [
+      ".mp4",
+      ".webm",
+      ".mov",
+      ".avi",
+      ".wmv",
+      ".flv",
+      ".mkv",
+      ".3gp",
+      ".m4v",
+      ".ogg",
+      ".ogv",
+      ".qt",
+      ".vob",
+      ".mpg",
+      ".mpeg",
+      ".m2v",
+      ".mpv",
+      ".m4p",
+      ".m2ts",
+      ".mts",
+      ".ts",
+    ];
+    const videoUrl = videoExtensions.find((ext) => details.url.endsWith(ext));
+    if (videoUrl) {
+      console.log(`Video URL: ${details.url}`);
+    }
+
     chrome.storage.local.set({ [`${details.timeStamp}`]: details });
   },
   { urls: ["<all_urls>"] },
