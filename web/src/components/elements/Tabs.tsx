@@ -1,46 +1,57 @@
+import React from "react";
+import { AiOutlineScan } from "react-icons/ai";
+import { BsImages } from "react-icons/bs";
+import { MdVideoSettings } from "react-icons/md";
 import { classNames } from "../../utils/helpers";
+import { GeneralStore } from "../../store/GeneralStore";
 
-const tabs = [
-  { name: "Images", href: "#", current: false, count: "12" },
-  { name: "Videos", href: "#", current: false, count: "12" },
-];
+export const Tabs: React.FC = () => {
+  const { setTab } = GeneralStore();
+  const tabs = [
+    {
+      href: "#",
+      current: false,
+      icon: <BsImages />,
+      count: 100,
+      onClick: () => setTab("image"),
+    },
+    {
+      href: "#",
+      current: false,
+      icon: <MdVideoSettings />,
+      count: "10",
+      onClick: () => setTab("video"),
+    },
+    {
+      href: "#",
+      count: "100",
+      current: false,
+      icon: <AiOutlineScan />,
+      css: true,
+    },
+  ];
 
-export function Tabs() {
   return (
-    <div className="mt-[100px] w-full">
-      <div className="">
-        <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-8" >
-            {tabs.map((tab) => (
-              <a
-                key={tab.name}
-                href="#"
+    <div className="global_container fixed w-full bg-downloadContainer p-3">
+      <div className="flex justify-between">
+        {tabs.map((tab, idx) => (
+          <div key={idx} className="flex justify-between" onClick={tab.onClick}>
+            <div className="text-xl text-white hover:text-primary">
+              {tab.icon}
+            </div>
+            {tab.count ? (
+              <span
                 className={classNames(
-                  tab.current
-                    ? "border-indigo-500 flex justify-between hover:text-primary text-indigo-600"
-                    : "border-transparent text-gray-500 flex justify-between hover:text-primary",
-                  "flex whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium"
+                  tab.current ? "text-indigo-600" : "text-white",
+                  "rounded-full px-2.5 py-0.5 text-xs font-medium"
                 )}
-                aria-current={tab.current ? "page" : undefined}
               >
-                {tab.name}
-                {tab.count ? (
-                  <span
-                    className={classNames(
-                      tab.current
-                        ? "bg-indigo-100 text-indigo-600"
-                        : "bg-gray-100 text-white",
-                      "ml-3 hidden rounded-full px-2.5 py-0.5 text-xs font-medium"
-                    )}
-                  >
-                    {tab.count}
-                  </span>
-                ) : null}
-              </a>
-            ))}
-          </nav>
-        </div>
+                {tab.count}
+              </span>
+            ) : null}{" "}
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};

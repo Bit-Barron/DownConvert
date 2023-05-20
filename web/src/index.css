@@ -16,6 +16,12 @@ body,
   border-top: 1px solid var(--border-color);
 }
 
+.global_container {
+  bottom: 0;
+  z-index: 100;
+  border-top: 1px solid var(--border-color);
+}
+
 ::-webkit-scrollbar {
   @apply h-[20px] w-[2px];
 }

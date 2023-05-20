@@ -24,7 +24,6 @@ export class AppController {
 
     // iterate for each image
     for (const image of images) {
-      console.log(image)
       const name = new URL(image.url).pathname.split('/').slice(-1)[0];
       const imageType = image.headers
       ?.find((header) => header.name.toLowerCase() === 'content-type')
