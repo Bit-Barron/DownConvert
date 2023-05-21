@@ -1,11 +1,10 @@
 import React from "react";
-import { AiOutlineScan } from "react-icons/ai";
 import { BsImages } from "react-icons/bs";
-import { MdVideoSettings } from "react-icons/md";
-import { classNames } from "../../utils/helpers";
+import { MdOutlineContactSupport, MdVideoSettings } from "react-icons/md";
 import { GeneralStore } from "../../store/GeneralStore";
 import { ImageStore } from "../../store/ImageStore";
 import { VideoStore } from "../../store/VideoStore";
+import { classNames } from "../../utils/helpers";
 
 export const Tabs: React.FC = () => {
   const { setTab } = GeneralStore();
@@ -28,7 +27,7 @@ export const Tabs: React.FC = () => {
     {
       count: "100",
       current: false,
-      icon: <AiOutlineScan />,
+      icon: <MdOutlineContactSupport />,
       css: true,
     },
   ];

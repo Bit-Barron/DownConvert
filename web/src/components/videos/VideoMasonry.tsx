@@ -5,12 +5,10 @@ import useMedia from "../../useMedia";
 import { a, useTransition } from "@react-spring/web";
 import styles from "./styles.module.css";
 import shuffle from "lodash.shuffle";
+import { VideoStore } from "../../store/VideoStore";
 
 export const ImageMasonry: React.FC = () => {
-  const { images, setAllImages, setSelectedImage, selectedImages } =
-    ImageStore();
-
-  console.log(selectedImages);
+  const { video, setVideo } = VideoStore();
 
   const columns = useMedia(
     ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],
@@ -21,12 +19,12 @@ export const ImageMasonry: React.FC = () => {
   const [ref, { width }] = useMeasure();
 
   useEffect(() => {
-    setAllImages(shuffle(images));
+    setVideo(shuffle(video));
   }, []);
 
   const [heights, gridItems] = useMemo(() => {
     const heights = new Array(columns).fill(0);
-    const gridItems = images.map((child) => {
+    const gridItems = video.map((child) => {
       const column = heights.indexOf(Math.min(...heights));
       const x = (width / columns) * column;
       const y = (heights[column] += child.height / 2) - child.height / 2;
@@ -39,7 +37,7 @@ export const ImageMasonry: React.FC = () => {
       };
     });
     return [heights, gridItems];
-  }, [columns, images, width]);
+  }, [columns, width]);
 
   const transitions = useTransition(gridItems, {
     key: (item: { css: string; height: number }) => item.css,
@@ -59,11 +57,11 @@ export const ImageMasonry: React.FC = () => {
       {transitions((style, item) => (
         <a.div style={style}>
           <div
-            onClick={() => setSelectedImage(item)}
+            onClick={() => setVideo(item)}
             style={{
               backgroundImage: `url(${item.url}?auto=compress&dpr=2&h=500&w=500)`,
             }}
-            className={selectedImages.length > 0 ?  "border-2 border-b border-red-900" : ""}
+            className={""}
           />
         </a.div>
       ))}
