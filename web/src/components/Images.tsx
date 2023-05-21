@@ -10,10 +10,10 @@ export const Images = () => {
       const requests = Object.values(items) as [
         chrome.webRequest.WebResponseCacheDetails
       ];
-      const img = requests.filter(({ type }) => type === "image");
+      const imgs = requests.filter(({ type }) => type === "image");
 
       const uniqueImages = [
-        ...new Map(img.map((item) => [item["url"], item])).values(),
+        ...new Map(imgs.map((item) => [item["url"], item])).values(),
       ];
 
       const images = uniqueImages.map(({ url }) => ({ url, height: 0 }));

@@ -1,14 +1,13 @@
-import { useEffect, useMemo } from "react";
-import { ImageStore } from "../../store/ImageStore";
-import useMeasure from "react-use-measure";
-import useMedia from "../../useMedia";
 import { a, useTransition } from "@react-spring/web";
-import styles from "./styles.module.css";
 import shuffle from "lodash.shuffle";
+import { useEffect, useMemo } from "react";
+import useMeasure from "react-use-measure";
 import { VideoStore } from "../../store/VideoStore";
+import useMedia from "../../useMedia";
+import styles from "./styles.module.css";
 
-export const ImageMasonry: React.FC = () => {
-  const { video, setVideo } = VideoStore();
+export const VideoMasonry: React.FC = () => {
+  const { video, setSelectedVideo, setAllVideos } = VideoStore();
 
   const columns = useMedia(
     ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],
@@ -19,7 +18,7 @@ export const ImageMasonry: React.FC = () => {
   const [ref, { width }] = useMeasure();
 
   useEffect(() => {
-    setVideo(shuffle(video));
+    setAllVideos(shuffle(video));
   }, []);
 
   const [heights, gridItems] = useMemo(() => {
@@ -57,7 +56,7 @@ export const ImageMasonry: React.FC = () => {
       {transitions((style, item) => (
         <a.div style={style}>
           <div
-            onClick={() => setVideo(item)}
+            onClick={() => setSelectedVideo(item)}
             style={{
               backgroundImage: `url(${item.url}?auto=compress&dpr=2&h=500&w=500)`,
             }}

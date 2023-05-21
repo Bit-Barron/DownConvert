@@ -1,48 +1,42 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { VideoStore } from "../store/VideoStore";
 import { VideoDownloader } from "./videos/VideoDownload";
+import { VideoMasonry } from "./videos/VideoMasonry";
 
 export const Videos: React.FC = () => {
-  const { video } = VideoStore();
-  const [type] = useState<string>("");
+  const { upsertVideo } = VideoStore();
+
   useEffect(() => {
     chrome.storage.local.get(null, (items) => {
       const requests = Object.values(items) as [
         chrome.webRequest.WebResponseCacheDetails
       ];
-      const videos = requests.filter(({ type }) => type === "video");
 
+      const vids = requests.filter(({ type }) => type === "media");
       const uniqueVideos = [
-        ...new Map(videos.map((item) => [item["url"], item])).values(),
+        ...new Map(vids.map((item) => [item["url"], item])).values(),
       ];
 
-      const videoUrls = uniqueVideos.map(({ url }) => url);
+      const videos = uniqueVideos.map(({ url }) => ({ url, height: 0 }));
+
+      for (const video of videos) {
+        const vid = document.createElement("video");
+        vid.onload = () =>
+          upsertVideo({
+            url: vid.src,
+            height: vid.height,
+          });
+        vid.src = video.url;
+      }
     });
   }, []);
-
-  const sendVideos = async (videos: Video[]): Promise<void> => {
-    await axios.post("http://localhost:3000/api/videos", {
-      videos,
-      type,
-    });
-  };
 
   return (
     <>
       <VideoDownloader />
-      <main className="mt-10 grid grid-cols-3">
-        {video.map((videos, idx) => {
-          const { url } = videos;
-          return (
-            <div key={idx}>
-              <video controls onClick={() => sendVideos(video)}>
-                <source src={url} />
-              </video>
-            </div>
-          );
-        })}
-      </main>
+      <div>
+        <VideoMasonry />
+      </div>
     </>
   );
 };

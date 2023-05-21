@@ -10,7 +10,6 @@ export const ImageMasonry: React.FC = () => {
   const { images, setAllImages, setSelectedImage, selectedImages } =
     ImageStore();
 
-  console.log(selectedImages);
 
   const columns = useMedia(
     ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],
@@ -63,7 +62,9 @@ export const ImageMasonry: React.FC = () => {
             style={{
               backgroundImage: `url(${item.url}?auto=compress&dpr=2&h=500&w=500)`,
             }}
-            className={selectedImages.length > 0 ?  "border-2 border-b border-red-900" : ""}
+            className={`border-2 border-b ${
+              selectedImages.includes(item) ? "border-0" : ""
+            }`}
           />
         </a.div>
       ))}

@@ -12,7 +12,7 @@ export type ImageStore = {
 
   selectedImages: Image[];
   setSelectedImage: (img: Image) => void;
-}
+};
 
 export const ImageStore = create<ImageStore>()(
   immer<ImageStore>((set, get) => ({

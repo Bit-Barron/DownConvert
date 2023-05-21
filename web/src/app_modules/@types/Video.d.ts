@@ -1,4 +1,4 @@
 interface Video {
   url: string;
-  active: boolean;
+  height: number;
 }
