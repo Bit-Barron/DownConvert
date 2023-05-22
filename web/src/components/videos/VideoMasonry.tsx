@@ -4,7 +4,7 @@ import { useEffect, useMemo } from "react";
 import useMeasure from "react-use-measure";
 import { VideoStore } from "../../store/VideoStore";
 import useMedia from "../../useMedia";
-import styles from "./styles.module.css";
+import styles from '../images/styles.module.css'
 
 export const VideoMasonry: React.FC = () => {
   const { video, setSelectedVideo, setAllVideos } = VideoStore();
