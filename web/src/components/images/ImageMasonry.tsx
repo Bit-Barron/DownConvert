@@ -62,8 +62,8 @@ export const ImageMasonry: React.FC = () => {
             style={{
               backgroundImage: `url(${item.url}?auto=compress&dpr=2&h=500&w=500)`,
             }}
-            className={`border-2 border-b ${
-              selectedImages.includes(item) ? "border-0" : ""
+            className={`${
+              selectedImages.includes(item) ? "border-2 border-b" : ""
             }`}
           />
         </a.div>

@@ -25,10 +25,8 @@ export const VideoStore = create<VideoStore>()(
     upsertVideo: (test) => {
       const foundVideoIndex = get().video.findIndex((i) => i.url === test.url);
       if (foundVideoIndex !== -1) {
-        const foundVideo = get().video[foundVideoIndex];
-        console.log(foundVideo.url);
+        get().video[foundVideoIndex];
       } else {
-        console.log("Video not found");
       }
     },
     selectedVideo: [],

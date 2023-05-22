@@ -12,6 +12,8 @@ export const Videos: React.FC = () => {
         chrome.webRequest.WebResponseCacheDetails
       ];
 
+
+
       const vids = requests.filter(({ type }) => type === "media");
       const uniqueVideos = [
         ...new Map(vids.map((item) => [item["url"], item])).values(),

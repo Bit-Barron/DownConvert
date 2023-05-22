@@ -1,7 +1,7 @@
 chrome.webRequest.onCompleted.addListener(
   (details) => {
+    console.log(details.url);
     chrome.storage.local.set({ [`${details.timeStamp}`]: details });
-    console.log(details);
   },
   { urls: ["<all_urls>"] },
   ["responseHeaders", "extraHeaders"]

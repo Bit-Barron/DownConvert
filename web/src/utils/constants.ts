@@ -21,6 +21,35 @@ export const IMAGE_FORMATS = [
   "jxl",
 ] as const;
 
+    //youtube
+      //snapchat
+      //facebook
+      //instagram
+      //tiktok
+
+export const VIDEO = [
+  {
+    name: "Facebook",
+    domains: ["test.com", "hallo.com"],
+  },
+  {
+    name: "Youtube",
+    domains: ["test.com", "hallo.com"],
+  },
+  {
+    name: "Snapchat",
+    domains: ["test.com", "hallo.com"],
+  },
+  {
+    name: "instagram",
+    domains: ["test.com", "hallo.com"],
+  },
+  {
+    name: "Tiktok",
+    domains: ["test.com", "hallo.com"],
+  },
+];
+
 export const VIDEO_FORMATS = ["orginal", "BFI", "CAF", "FLV", "GIF"] as const;
 
 export type VideoFormat = (typeof VIDEO_FORMATS)[number];
