@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { VideoStore } from "../store/VideoStore";
 import { VideoDownloader } from "./videos/VideoDownload";
 import { VideoMasonry } from "./videos/VideoMasonry";
+import { VIDEO } from "../utils/constants";
 
 export const Videos: React.FC = () => {
   const { upsertVideo } = VideoStore();
@@ -12,9 +13,17 @@ export const Videos: React.FC = () => {
         chrome.webRequest.WebResponseCacheDetails
       ];
 
-
-
       const vids = requests.filter(({ type }) => type === "media");
+      const getUrl = requests.map((item) => item.url);
+
+      for (let url of getUrl) {
+        for (let test of VIDEO) {
+          if (url.includes(test.domains.join(""))) {
+            console.log(url.includes(test.domains.join("")));
+          }
+        }
+      }
+
       const uniqueVideos = [
         ...new Map(vids.map((item) => [item["url"], item])).values(),
       ];

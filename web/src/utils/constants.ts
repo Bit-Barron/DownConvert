@@ -21,11 +21,11 @@ export const IMAGE_FORMATS = [
   "jxl",
 ] as const;
 
-    //youtube
-      //snapchat
-      //facebook
-      //instagram
-      //tiktok
+//youtube
+//snapchat
+//facebook
+//instagram
+//tiktok
 
 export const VIDEO = [
   {
@@ -46,7 +46,7 @@ export const VIDEO = [
   },
   {
     name: "Tiktok",
-    domains: ["test.com", "hallo.com"],
+    domains: ["https://v16-webapp-prime.tiktok.com"],
   },
 ];
 
