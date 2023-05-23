@@ -29,23 +29,27 @@ export const IMAGE_FORMATS = [
 
 export const VIDEO = [
   {
-    name: "Facebook",
-    domains: ["test.com", "hallo.com"],
+    name: "https://www.facebook.com",
+    domains: ["test.com"],
   },
   {
-    name: "Youtube",
-    domains: ["test.com", "hallo.com"],
+    name: "https://www.snapchat.com",
+    domains: ["test.com"],
   },
   {
-    name: "Snapchat",
-    domains: ["test.com", "hallo.com"],
+    name: "https://www.instagram.com",
+    domains: ["test.com"],
   },
   {
-    name: "instagram",
-    domains: ["test.com", "hallo.com"],
+    name: "https://v.redd.it",
+    domains: ["asd"],
   },
   {
-    name: "Tiktok",
+    name: "https://thumb.pr0gramm.com",
+    domains: ["asdasd"]
+  },
+  {
+    name: "https://www.tiktok.com",
     domains: ["https://v16-webapp-prime.tiktok.com"],
   },
 ];

@@ -10,7 +10,6 @@ export const ImageMasonry: React.FC = () => {
   const { images, setAllImages, setSelectedImage, selectedImages } =
     ImageStore();
 
-
   const columns = useMedia(
     ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],
     [5, 4, 3],

@@ -14,14 +14,32 @@ export const Videos: React.FC = () => {
       ];
 
       const vids = requests.filter(({ type }) => type === "media");
-      const getUrl = requests.map((item) => item.url);
+      const captureRequest = requests.filter((item) => {
+        return VIDEO.some((video) => {
+          return item.initiator?.includes(video.name);
+        });
+      });
 
-      for (let url of getUrl) {
-        for (let test of VIDEO) {
-          if (url.includes(test.domains.join(""))) {
-            console.log(url.includes(test.domains.join("")));
-          }
-        }
+      if (captureRequest.length > 0) {
+        // Tiktok
+        const tiktok = [
+          ...new Set(captureRequest.map((item) => item.url)),
+        ].filter((item) =>
+          item.includes("https://v16-webapp-prime.tiktok.com")
+        );
+        // Reddit
+        const reddit = [
+          ...new Set(captureRequest.map((item) => item.url)),
+        ].filter((item) => item.includes("https://v.redd.it/"));
+
+        // Pr0
+        const pr0 = [...new Set(captureRequest.map((item) => item.url))].filter(
+          (item) => item.includes("https://thumb.pr0gramm.com/")
+        );
+
+        console.log(pr0);
+      } else {
+        return [];
       }
 
       const uniqueVideos = [
