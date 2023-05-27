@@ -21,7 +21,6 @@ export class AppController {
 
     const zip = new JSZip();
 
-
     // iterate for each image
     for (const image of images) {
       const name = new URL(image.url).pathname.split('/').slice(-1)[0];

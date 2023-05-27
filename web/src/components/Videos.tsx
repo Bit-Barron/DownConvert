@@ -32,12 +32,7 @@ export const Videos: React.FC = () => {
           ...new Set(captureRequest.map((item) => item.url)),
         ].filter((item) => item.includes("https://v.redd.it/"));
 
-        // Pr0
-        const pr0 = [...new Set(captureRequest.map((item) => item.url))].filter(
-          (item) => item.includes("https://thumb.pr0gramm.com/")
-        );
-
-        console.log(pr0);
+        const facebook = [...new Set(captureRequest.map((item) => item.url))];
       } else {
         return [];
       }

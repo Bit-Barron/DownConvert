@@ -45,10 +45,6 @@ export const VIDEO = [
     domains: ["asd"],
   },
   {
-    name: "https://thumb.pr0gramm.com",
-    domains: ["asdasd"]
-  },
-  {
     name: "https://www.tiktok.com",
     domains: ["https://v16-webapp-prime.tiktok.com"],
   },
