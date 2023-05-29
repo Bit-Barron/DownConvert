@@ -15,7 +15,6 @@ export type VideoStore = {
   selectedVideo: Video[];
   setSelectedVideo: (video: Video) => void;
 };
-
 export const VideoStore = create<VideoStore>()(
   immer<VideoStore>((set, get) => ({
     format: "orginal",

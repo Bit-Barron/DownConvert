@@ -21,11 +21,6 @@ export const IMAGE_FORMATS = [
   "jxl",
 ] as const;
 
-//youtube
-//snapchat
-//facebook
-//instagram
-//tiktok
 
 export const VIDEO = [
   {
@@ -48,7 +43,9 @@ export const VIDEO = [
     name: "https://www.tiktok.com",
     domains: ["https://v16-webapp-prime.tiktok.com"],
   },
-];
+] as const;
+
+export type Video = (typeof VIDEO)[number];
 
 export const VIDEO_FORMATS = ["orginal", "BFI", "CAF", "FLV", "GIF"] as const;
 
