@@ -1,14 +1,14 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-export type facebookStore = {
-  url: string;
+export type FacebookStore = {
+  videourl: string;
   setUrl: (url: string) => void;
 };
 
-export const FacebookStore = create<facebookStore>()(
-  immer<facebookStore>((set) => ({
-    url: "",
-    setUrl: (url) => set((state) => void (state.url = url)),
+export const FacebookStore = create<FacebookStore>()(
+  immer<FacebookStore>((set) => ({
+    videourl: "",
+    setUrl: (url) => set((state) => void (state.videourl = url)),
   }))
 );
