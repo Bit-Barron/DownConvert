@@ -1,5 +1,10 @@
 import { Combobox } from "@headlessui/react";
-import { ImageFormat, IMAGE_FORMATS, VIDEO_FORMATS, VideoFormat } from "../../utils/constants";
+import {
+  ImageFormat,
+  IMAGE_FORMATS,
+  VIDEO_FORMATS,
+  VideoFormat,
+} from "../../utils/constants";
 import { classNames } from "../../utils/helpers";
 import { HiSelector } from "react-icons/hi";
 
@@ -20,10 +25,12 @@ export const FormatCombox: React.FC<FormatComboxProps> = ({
         <div className="relative">
           <Combobox.Input
             className="relative w-full cursor-default rounded-lg bg-combox py-2 pl-3 pr-10 text-left text-white shadow-md focus:outline-none focus-visible:ring-2 sm:text-sm"
-            onChange={(event) => setFormat(event.target.value as ImageFormat | VideoFormat)}
-            />
+            onChange={(event) =>
+              setFormat(event.target.value as ImageFormat | VideoFormat)
+            }
+          />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-            <HiSelector className="h-5 w-5 text-gray-400" aria-hidden="true" />
+            <HiSelector className="h-5 w-5 text-gray-400" />
           </Combobox.Button>
 
           <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-combox py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
@@ -40,14 +47,7 @@ export const FormatCombox: React.FC<FormatComboxProps> = ({
               >
                 {({ active, selected }) => (
                   <>
-                    <span
-                      className={classNames(
-                        "block truncate",
-                    "font-semibold"
-                      )}
-                    >
-                      {f}
-                    </span>
+                    <span className={classNames("block truncate")}>{f}</span>
 
                     {selected && (
                       <span

@@ -29,7 +29,8 @@ export class FacebookUrlResolver implements VideoUrlResolver {
         return JSON.parse(tmpStr).text;
       };
       const hdLink = cleanStr(matches[1]);
-      console.log(hdLink)
+      console.log("tesd");
+      console.log(hdLink);
       return hdLink;
     }
     return "";
