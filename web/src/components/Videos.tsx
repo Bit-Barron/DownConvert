@@ -5,7 +5,7 @@ import { FacebookStore } from "../store/FacebookStore";
 import { VideoStore } from "../store/VideoStore";
 
 export const Videos: React.FC = () => {
-  const { videourl } = FacebookStore();
+  const { videourl, setUrl } = FacebookStore();
   const { upsertVideo } = VideoStore();
 
   useEffect(() => {
@@ -26,6 +26,7 @@ export const Videos: React.FC = () => {
           });
 
         vid.src = await resolver.resolveVideoUrl(item.url);
+        setUrl(await resolver.resolveVideoUrl(item.url));
       }
     });
   }, []);
@@ -34,11 +35,9 @@ export const Videos: React.FC = () => {
     <>
       <VideoDownloader />
       <div>
-        <div>
-          <video controls>
-            <source src={videourl} />
-          </video>
-        </div>
+        <video controls>
+          <source src="https://cf-st.sc-cdn.net/d/r0gLeMwboGlhdHvoVRMOu.85.mp4" />
+        </video>
       </div>
     </>
   );

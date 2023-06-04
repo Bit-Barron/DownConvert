@@ -1,8 +1,13 @@
 import axios from "axios";
 
+// get the url and resolver
 export function getUrlResolver(url: string): VideoUrlResolver | undefined {
-  if (url.startsWith("https://www.facebook.com/watch/?v=")) {
+  if (url.startsWith("https://www.facebook.com/watch?v=")) {
     return new FacebookUrlResolver();
+  } else if (url.startsWith("https://v16-webapp-prime.tiktok.com")) {
+    return new TikTokUrlResolver();
+  } else if (url.startsWith("https://cf-st.sc-cdn.net/")) {
+    return new SnapchatUrlResolver();
   }
   return undefined;
 }
@@ -11,6 +16,7 @@ export interface VideoUrlResolver {
   resolveVideoUrl(originurl: string): Promise<string>;
 }
 
+// facebook url Resolver -> Facebook Works
 export class FacebookUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
     const headers = {
@@ -29,10 +35,24 @@ export class FacebookUrlResolver implements VideoUrlResolver {
         return JSON.parse(tmpStr).text;
       };
       const hdLink = cleanStr(matches[1]);
-      console.log("tesd");
-      console.log(hdLink);
       return hdLink;
     }
     return "";
   }
 }
+
+// Tiktok url resolver
+export class TikTokUrlResolver implements VideoUrlResolver {
+  async resolveVideoUrl(originalurl: string): Promise<string> {
+    return originalurl;
+  }
+}
+
+// Snapchat url resolver -> Snapchat Works
+export class SnapchatUrlResolver implements VideoUrlResolver {
+  async resolveVideoUrl(originurl: string): Promise<string> {
+    console.log(originurl);
+    return "";
+  }
+}
+
