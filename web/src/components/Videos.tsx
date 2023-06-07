@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { VideoDownloader } from "./videos/VideoDownload";
 import { getUrlResolver } from "../resolver/videoUrlResolver";
-import { FacebookStore } from "../store/FacebookStore";
 import { VideoStore } from "../store/VideoStore";
+import { Spinner } from "./elements/Spinner";
 
 export const Videos: React.FC = () => {
-  const { setUrl } = FacebookStore();
+  const { url } = VideoStore();
   const { upsertVideo } = VideoStore();
 
   useEffect(() => {
@@ -15,9 +15,7 @@ export const Videos: React.FC = () => {
       ];
       for (const item of requests) {
         const resolver = getUrlResolver(item.url);
-        if (!resolver) {
-          continue;
-        }
+        if (!resolver) continue;
         const vid = document.createElement("video");
         vid.onload = () =>
           upsertVideo({
@@ -26,18 +24,23 @@ export const Videos: React.FC = () => {
           });
 
         vid.src = await resolver.resolveVideoUrl(item.url);
-        setUrl(await resolver.resolveVideoUrl(item.url));
       }
     });
-  }, [setUrl, upsertVideo]);
+  }, []);
 
   return (
     <>
       <VideoDownloader />
       <div>
-        <video controls>
-          <source src="https://cf-st.sc-cdn.net/d/r0gLeMwboGlhdHvoVRMOu.85.mp4" />
-        </video>
+        {url ? (
+          <div className="mt-10">
+            <video controls>
+              <source src={url} />
+            </video>
+          </div>
+        ) : (
+          <Spinner />
+        )}
       </div>
     </>
   );

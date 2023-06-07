@@ -6,6 +6,9 @@ export type VideoStore = {
   format: VideoFormat;
   setFormat: (format: VideoFormat) => void;
 
+  url: string;
+  setUrl: (url: string) => void;
+
   video: Video[];
   setVideo: (video: Video[]) => void;
 
@@ -19,6 +22,8 @@ export const VideoStore = create<VideoStore>()(
   immer<VideoStore>((set, get) => ({
     format: "orginal",
     setFormat: (format) => set((state) => ({ ...state, format })),
+    url: "",
+    setUrl: (url) => set((state) => ({ ...state, url })),
     video: [],
     setVideo: (video) => set((state) => void (state.video = video)),
     upsertVideo: (test) => {
@@ -26,6 +31,7 @@ export const VideoStore = create<VideoStore>()(
       if (foundVideoIndex !== -1) {
         get().video[foundVideoIndex];
       } else {
+        console.log("")
       }
     },
     selectedVideo: [],

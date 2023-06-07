@@ -1,5 +1,5 @@
 import axios from "axios";
-import fs from "fs";
+import { VideoStore } from "../store/VideoStore";
 
 // get the url and resolver
 export function getUrlResolver(url: string): VideoUrlResolver | undefined {
@@ -7,7 +7,7 @@ export function getUrlResolver(url: string): VideoUrlResolver | undefined {
     return new FacebookUrlResolver();
   } else if (url.startsWith("https://v16-webapp-prime.tiktok.com")) {
     return new TikTokUrlResolver();
-  } else if (url.startsWith("https://cf-st.sc-cdn.net/")) {
+  } else if (url.startsWith("https://cf-st.sc-cdn.net/d/")) {
     return new SnapchatUrlResolver();
   }
   return undefined;
@@ -21,6 +21,7 @@ export interface VideoUrlResolver {
 
 export class FacebookUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
+    const { setUrl } = VideoStore.getState();
     const headers = {
       accept:
         "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -37,8 +38,7 @@ export class FacebookUrlResolver implements VideoUrlResolver {
         return JSON.parse(tmpStr).text;
       };
       const hdLink = cleanStr(matches[1]);
-      console.log("tesd");
-      console.log(hdLink);
+      setUrl(hdLink);
       return hdLink;
     }
     return "";
@@ -47,18 +47,13 @@ export class FacebookUrlResolver implements VideoUrlResolver {
 // Tiktok url resolver
 export class TikTokUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
-    const pattern =
-      /^((?:https?:)?\/\/)?((?:m|vm|vt|www)\.)??((?:tiktok\.com))\/((?:[\w\-]{6}(?:\/|))|[@](\S+))/;
-    const cleanUrl = originurl.split("?")[0];
-
-    return originurl;
+    return "originurl";
   }
 }
 
 // Snapchat url resolver -> Snapchat Work
 export class SnapchatUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
-    console.log(originurl)
-    return originurl;
+    return "";
   }
 }
