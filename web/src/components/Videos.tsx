@@ -7,6 +7,7 @@ import { Spinner } from "./elements/Spinner";
 export const Videos: React.FC = () => {
   const { url } = VideoStore();
   const { upsertVideo } = VideoStore();
+  console.log(url);
 
   useEffect(() => {
     chrome.storage.local.get(null, async (items) => {
