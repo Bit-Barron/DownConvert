@@ -9,7 +9,7 @@ import axios from "axios";
 export const VideoDownloader = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const { format, setFormat } = VideoStore();
-  const { videourl } = FacebookStore();
+  const { selectedUrl } = FacebookStore();
 
   const sendVideo = async (video: string): Promise<void> => {
     const response = await axios.post(
@@ -23,7 +23,6 @@ export const VideoDownloader = () => {
       }
     );
 
-    console.log(response);
     const contentdisposition =
       response.headers["content-disposition"].split("=")[1];
     const blob = new Blob([response.data], { type: "application/zip" });
@@ -44,7 +43,7 @@ export const VideoDownloader = () => {
         formats={VIDEO_FORMATS}
       />
       <div>
-        <Button text={"Download"} onClick={() => sendVideo(videourl)} />
+        <Button text={"Download"} onClick={() => sendVideo(selectedUrl)} />
         <a ref={downloadLinkRef} className="hidden" />
       </div>
     </div>

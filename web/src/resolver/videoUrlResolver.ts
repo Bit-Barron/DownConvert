@@ -46,7 +46,6 @@ export class FacebookUrlResolver implements VideoUrlResolver {
       };
       const hdLink = cleanStr(matches[1]);
       setUrl(hdLink);
-      console.log(hdLink);
       return hdLink;
     }
     return "";
@@ -57,7 +56,6 @@ export class FacebookUrlResolver implements VideoUrlResolver {
 export class SnapchatUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
     const { setUrl } = VideoStore.getState();
-    console.log(originurl);
     setUrl(originurl);
     return "";
   }
