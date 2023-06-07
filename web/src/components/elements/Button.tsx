@@ -1,13 +1,13 @@
-interface Button {
+interface ButtonProps {
   text: string;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-export const Button = ({ text, onClick }: Button) => {
+export const Button = ({ text, onClick }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className="rounded mt-20 bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+      className="rounded bg-primary px-5 py-2 font-bold text-white"
     >
       {text}
     </button>

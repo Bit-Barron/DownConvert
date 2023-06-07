@@ -1,4 +1,5 @@
 import axios from "axios";
+import fs from "fs";
 
 // get the url and resolver
 export function getUrlResolver(url: string): VideoUrlResolver | undefined {
@@ -17,6 +18,7 @@ export interface VideoUrlResolver {
 }
 
 // facebook url Resolver -> Facebook Works
+
 export class FacebookUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
     const headers = {
@@ -30,29 +32,33 @@ export class FacebookUrlResolver implements VideoUrlResolver {
     const regexRateLimit = /playable_url_quality_hd":"([^"]+)"/;
     const matches = data.match(regexRateLimit);
     if (matches) {
-      const cleanStr = (str: any) => {
+      const cleanStr = (str: string) => {
         const tmpStr = `{"text": "${str}"}`;
         return JSON.parse(tmpStr).text;
       };
       const hdLink = cleanStr(matches[1]);
+      console.log("tesd");
+      console.log(hdLink);
       return hdLink;
     }
     return "";
   }
 }
-
 // Tiktok url resolver
 export class TikTokUrlResolver implements VideoUrlResolver {
-  async resolveVideoUrl(originalurl: string): Promise<string> {
-    return originalurl;
+  async resolveVideoUrl(originurl: string): Promise<string> {
+    const pattern =
+      /^((?:https?:)?\/\/)?((?:m|vm|vt|www)\.)??((?:tiktok\.com))\/((?:[\w\-]{6}(?:\/|))|[@](\S+))/;
+    const cleanUrl = originurl.split("?")[0];
+
+    return originurl;
   }
 }
 
-// Snapchat url resolver -> Snapchat Works
+// Snapchat url resolver -> Snapchat Work
 export class SnapchatUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
-    console.log(originurl);
-    return "";
+    console.log(originurl)
+    return originurl;
   }
 }
-

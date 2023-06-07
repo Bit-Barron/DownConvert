@@ -5,7 +5,7 @@ import { FacebookStore } from "../store/FacebookStore";
 import { VideoStore } from "../store/VideoStore";
 
 export const Videos: React.FC = () => {
-  const { videourl, setUrl } = FacebookStore();
+  const { setUrl } = FacebookStore();
   const { upsertVideo } = VideoStore();
 
   useEffect(() => {
@@ -13,8 +13,8 @@ export const Videos: React.FC = () => {
       const requests = Object.values(items) as [
         chrome.webRequest.WebResponseCacheDetails
       ];
-      for (let item of requests) {
-        let resolver = getUrlResolver(item.url);
+      for (const item of requests) {
+        const resolver = getUrlResolver(item.url);
         if (!resolver) {
           continue;
         }
@@ -29,7 +29,7 @@ export const Videos: React.FC = () => {
         setUrl(await resolver.resolveVideoUrl(item.url));
       }
     });
-  }, []);
+  }, [setUrl, upsertVideo]);
 
   return (
     <>

@@ -1,11 +1,10 @@
 import React from "react";
 import { BsImages } from "react-icons/bs";
-import { MdOutlineContactSupport, MdVideoSettings } from "react-icons/md";
+import { MdVideoSettings } from "react-icons/md";
 import { GeneralStore } from "../../store/GeneralStore";
 import { ImageStore } from "../../store/ImageStore";
 import { VideoStore } from "../../store/VideoStore";
 import { classNames } from "../../utils/helpers";
-import { BsDiscord } from "react-icons/bs";
 
 export const Tabs: React.FC = () => {
   const { setTab } = GeneralStore();
@@ -25,18 +24,13 @@ export const Tabs: React.FC = () => {
       count: video.length,
       onClick: () => setTab("video"),
     },
-
   ];
 
   return (
     <div className="global_container fixed w-full bg-downloadContainer p-3">
       <div className="flex justify-between">
         {tabs.map((tab, idx) => (
-          <a
-            key={idx}
-            className="flex justify-between"
-            onClick={tab.onClick}
-          >
+          <a key={idx} className="flex justify-between" onClick={tab.onClick}>
             <div className="text-xl text-white hover:text-primary">
               {tab.icon}
             </div>

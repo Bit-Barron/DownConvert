@@ -3,11 +3,11 @@ import { ImageStore } from "../../store/ImageStore";
 import { IMAGE_FORMATS, ImageFormat } from "../../utils/constants";
 import { FormatCombox } from "../elements/Combox";
 import axios from "axios";
+import { Button } from "../elements/Button";
 
 export const ImageDownload: React.FC = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const { format, setFormat, selectedImages } = ImageStore();
-
 
   const sendImages = async (images: Image[]): Promise<void> => {
     const response = await axios.post(
@@ -40,12 +40,7 @@ export const ImageDownload: React.FC = () => {
         formats={IMAGE_FORMATS}
       />
       <div>
-        <button
-          className="rounded  bg-primary px-5 py-2 font-bold text-white"
-          onClick={() => sendImages(selectedImages)}
-        >
-          Download
-        </button>
+        <Button text={"Download"} onClick={() => sendImages(selectedImages)} />
       </div>
       <a ref={downloadLinkRef} className="hidden" />
     </div>

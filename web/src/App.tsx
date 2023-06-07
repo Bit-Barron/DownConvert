@@ -10,8 +10,6 @@ function App() {
   return (
     <section>
       <div className="flex justify-between">
-        {/* <Button onClick={() => setTab("image")} text="image" />
-      <Button onClick={() => setTab("video")} text="video" /> */}
         <ImageDownload />
         <Tabs />
       </div>

@@ -20,7 +20,7 @@ export const ImageMasonry: React.FC = () => {
 
   useEffect(() => {
     setAllImages(shuffle(images));
-  }, []);
+  }, []); // unused dependency 'images'
 
   const [heights, gridItems] = useMemo(() => {
     const heights = new Array(columns).fill(0);

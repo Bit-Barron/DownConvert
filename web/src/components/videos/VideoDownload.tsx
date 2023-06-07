@@ -3,6 +3,7 @@ import { VIDEO_FORMATS, VideoFormat } from "../../utils/constants";
 import { FormatCombox } from "../elements/Combox";
 import axios from "axios";
 import { VideoStore } from "../../store/VideoStore";
+import { Button } from "../elements/Button";
 
 export const VideoDownloader = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
@@ -24,12 +25,7 @@ export const VideoDownloader = () => {
         formats={VIDEO_FORMATS}
       />
       <div>
-        <button
-          className="rounded  bg-primary px-5 py-2 font-bold text-white"
-          onClick={() => sendVideo(selectedVideo)}
-        >
-          Download
-        </button>
+        <Button text={"Download"} onClick={() => sendVideo(selectedVideo)} />
         <a ref={downloadLinkRef} className="hidden" />
       </div>
     </div>
