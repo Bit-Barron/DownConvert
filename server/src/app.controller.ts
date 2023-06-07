@@ -12,7 +12,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
   @Post('imgs')
   async getImgUrl(
-    @Body() payload: { images: Image[]; format: string;},
+    @Body() payload: { images: Image[]; format: string },
     @Res() reply: FastifyReply,
   ) {
     const { images, format } = payload;
@@ -25,9 +25,8 @@ export class AppController {
     for (const image of images) {
       const name = new URL(image.url).pathname.split('/').slice(-1)[0];
       const imageType = image.headers
-      ?.find((header) => header.name.toLowerCase() === 'content-type')
-      ?.value.replace('image/', '');
-
+        ?.find((header) => header.name.toLowerCase() === 'content-type')
+        ?.value.replace('image/', '');
 
       const response = await axios.get(image.url, {
         responseType: 'arraybuffer',
@@ -36,7 +35,9 @@ export class AppController {
 
       const resizedImage = await sharp(imageBuffer)
         .toFormat(
-          format ? (format as keyof FormatEnum) : (imageType as keyof FormatEnum),
+          format
+            ? (format as keyof FormatEnum)
+            : (imageType as keyof FormatEnum),
         )
         .toBuffer();
       zip.file(`${name}.${format || imageType}`, resizedImage); // Add image to zip
@@ -58,6 +59,6 @@ export class AppController {
   @Post('videos')
   async getVideoUrl(@Body() payload: { videos: Video[]; type: string }) {
     const { videos, type } = payload;
-
+    console.log(videos, type);
   }
 }

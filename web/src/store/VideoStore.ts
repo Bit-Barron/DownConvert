@@ -31,7 +31,7 @@ export const VideoStore = create<VideoStore>()(
       if (foundVideoIndex !== -1) {
         get().video[foundVideoIndex];
       } else {
-        console.log("")
+        console.log("");
       }
     },
     selectedVideo: [],

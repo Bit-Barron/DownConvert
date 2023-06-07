@@ -3,14 +3,21 @@ import { VideoStore } from "../store/VideoStore";
 
 // get the url and resolver
 export function getUrlResolver(url: string): VideoUrlResolver | undefined {
-  if (url.startsWith("https://www.facebook.com/watch?v=")) {
+  if (
+    url.startsWith("https://www.facebook.com/watch/?v=") ||
+    url.startsWith("https://www.facebook.com/watch?v=")
+  ) {
     return new FacebookUrlResolver();
   } else if (url.startsWith("https://v16-webapp-prime.tiktok.com")) {
-    return new TikTokUrlResolver();
-  } else if (url.startsWith("https://cf-st.sc-cdn.net/d/" || url.startsWith("https://cf-st.sc-cdn.net/p/"))) {
+    // return new TikTokUrlResolver();
+  } else if (
+    url.startsWith(
+      "https://cf-st.sc-cdn.net/d/" ||
+        url.startsWith("https://cf-st.sc-cdn.net/p/")
+    )
+  ) {
     return new SnapchatUrlResolver();
   }
-  return undefined;
 }
 
 export interface VideoUrlResolver {
@@ -39,23 +46,18 @@ export class FacebookUrlResolver implements VideoUrlResolver {
       };
       const hdLink = cleanStr(matches[1]);
       setUrl(hdLink);
+      console.log(hdLink);
       return hdLink;
     }
     return "";
   }
 }
-// Tiktok url resolver
-export class TikTokUrlResolver implements VideoUrlResolver {
-  async resolveVideoUrl(originurl: string): Promise<string> {
-    console.log(originurl);
-    return "originurl";
-  }
-}
 
-// Snapchat url resolver -> Snapchat Work
+// Snapch^at url resolver -> Snapchat Work
 export class SnapchatUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
     const { setUrl } = VideoStore.getState();
+    console.log(originurl);
     setUrl(originurl);
     return "";
   }

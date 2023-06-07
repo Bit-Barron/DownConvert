@@ -3,11 +3,12 @@ import { VideoDownloader } from "./videos/VideoDownload";
 import { getUrlResolver } from "../resolver/videoUrlResolver";
 import { VideoStore } from "../store/VideoStore";
 import { Spinner } from "./elements/Spinner";
+import { FacebookStore } from "../store/FacebookStore";
 
 export const Videos: React.FC = () => {
   const { url } = VideoStore();
-  const { upsertVideo } = VideoStore();
-  console.log(url);
+  const { upsertVideo, setSelectedVideo } = VideoStore();
+  const { setUrl } = FacebookStore();
 
   useEffect(() => {
     chrome.storage.local.get(null, async (items) => {
@@ -35,7 +36,7 @@ export const Videos: React.FC = () => {
       <div>
         {url ? (
           <div className="mt-10">
-            <video controls>
+            <video controls onClick={() => setUrl(url)}>
               <source src={url} />
             </video>
           </div>
