@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import fs from 'fs';
 import path from 'path';
@@ -6,6 +6,8 @@ import axios from 'axios';
 import sharp, { FormatEnum } from 'sharp';
 import JSZip from 'jszip';
 import { FastifyReply } from 'fastify';
+import { FileInterceptor } from '@nestjs/platform-express';
+import * as ffmpeg from 'fluent-ffmpeg';
 
 @Controller('api')
 export class AppController {
@@ -57,8 +59,10 @@ export class AppController {
     return zipFileName;
   }
   @Post('videos')
-  async getVideoUrl(@Body() payload: { videos: Video[]; type: string }) {
-    const { videos, type } = payload;
-    console.log(videos, type);
+  @UseInterceptors(FileInterceptor('video'))
+  async getVideoUrl(@Body() payload: { videos: Video[]; format: string }) {
+    const { videos, format } = payload;
+
+    ffmpeg(videos).output(format);
   }
 }

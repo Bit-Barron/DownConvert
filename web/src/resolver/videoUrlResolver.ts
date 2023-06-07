@@ -25,7 +25,6 @@ export interface VideoUrlResolver {
 }
 
 // facebook url Resolver -> Facebook Works
-
 export class FacebookUrlResolver implements VideoUrlResolver {
   async resolveVideoUrl(originurl: string): Promise<string> {
     const { setUrl } = VideoStore.getState();

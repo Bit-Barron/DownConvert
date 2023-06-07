@@ -2,12 +2,9 @@ import { useEffect } from "react";
 import { VideoDownloader } from "./videos/VideoDownload";
 import { getUrlResolver } from "../resolver/videoUrlResolver";
 import { VideoStore } from "../store/VideoStore";
-import { FacebookStore } from "../store/FacebookStore";
 
 export const Videos: React.FC = () => {
-  const { url } = VideoStore();
-  const { upsertVideo } = VideoStore();
-  const { setSelectedUrl } = FacebookStore();
+  const { upsertVideo, setUrl, url } = VideoStore();
 
   useEffect(() => {
     chrome.storage.local.get(null, async (items) => {
@@ -35,8 +32,8 @@ export const Videos: React.FC = () => {
       <div>
         {url ? (
           <div className="mt-10">
-            <video controls onClick={() => setSelectedUrl(url)}>
-              <source src={url} onClick={() => setSelectedUrl(url)} />
+            <video controls onClick={() => setUrl(url)}>
+              <source src={url} />
             </video>
           </div>
         ) : (
