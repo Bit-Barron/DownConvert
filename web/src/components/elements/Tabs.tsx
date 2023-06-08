@@ -23,7 +23,7 @@ export const Tabs: React.FC = () => {
     {
       current: false,
       icon: <MdVideoSettings />,
-      count: url.length,
+      count: url ? 1 : 0,
       onClick: () => setTab("video"),
     },
   ];

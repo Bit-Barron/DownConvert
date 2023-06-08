@@ -40,7 +40,7 @@ export const Videos: React.FC = () => {
         ) : (
           <div>
             <h1 className="text-white font-bold flex text-2xl h-screen justify-center items-center">
-              Loading....
+              No images found
             </h1>
           </div>
         )}
