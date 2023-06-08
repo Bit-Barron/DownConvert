@@ -5,11 +5,13 @@ import { GeneralStore } from "../../store/GeneralStore";
 import { ImageStore } from "../../store/ImageStore";
 import { VideoStore } from "../../store/VideoStore";
 import { classNames } from "../../utils/helpers";
+import { Alerts } from "../utils/Alerts";
 
 export const Tabs: React.FC = () => {
-  const { setTab } = GeneralStore();
+  const { setTab, alerts } = GeneralStore();
   const { images } = ImageStore();
-  const { video } = VideoStore();
+  const { url } = VideoStore();
+
 
   const tabs = [
     {
@@ -21,7 +23,7 @@ export const Tabs: React.FC = () => {
     {
       current: false,
       icon: <MdVideoSettings />,
-      count: video.length,
+      count: url.length,
       onClick: () => setTab("video"),
     },
   ];
@@ -33,6 +35,13 @@ export const Tabs: React.FC = () => {
           <a key={idx} className="flex justify-between" onClick={tab.onClick}>
             <div className="text-xl text-white hover:text-primary">
               {tab.icon}
+            </div>
+            <div>
+              {alerts.map((alert) => (
+                <div key={alert.id}>
+                  <Alerts />
+                </div>
+              ))}
             </div>
             {tab.count ? (
               <span

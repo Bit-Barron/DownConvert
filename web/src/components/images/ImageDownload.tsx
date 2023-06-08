@@ -4,31 +4,40 @@ import { IMAGE_FORMATS, ImageFormat } from "../../utils/constants";
 import { FormatCombox } from "../elements/Combox";
 import axios from "axios";
 import { Button } from "../elements/Button";
+import { GeneralStore } from "../../store/GeneralStore";
 
 export const ImageDownload: React.FC = () => {
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const { format, setFormat, selectedImages } = ImageStore();
+  const { addAlert } = GeneralStore();
 
   const sendImages = async (images: Image[]): Promise<void> => {
-    const response = await axios.post(
-      "http://localhost:3000/api/imgs",
-      {
-        images,
-        format,
-      },
-      {
-        responseType: "blob",
-      }
-    );
-    const contentdisposition =
-      response.headers["content-disposition"].split("=")[1];
-    const blob = new Blob([response.data], { type: "application/zip" });
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/imgs",
+        {
+          images,
+          format,
+        },
+        {
+          responseType: "blob",
+        }
+      );
+      const contentdisposition =
+        response.headers["content-disposition"].split("=")[1];
+      const blob = new Blob([response.data], { type: "application/zip" });
 
-    if (downloadLinkRef.current) {
-      downloadLinkRef.current.href = URL.createObjectURL(blob);
-      downloadLinkRef.current.download = contentdisposition;
-      downloadLinkRef.current.click();
-      URL.revokeObjectURL(downloadLinkRef.current.href);
+      if (downloadLinkRef.current) {
+        downloadLinkRef.current.href = URL.createObjectURL(blob);
+        downloadLinkRef.current.download = contentdisposition;
+        downloadLinkRef.current.click();
+        URL.revokeObjectURL(downloadLinkRef.current.href);
+      }
+    } catch (err) {
+      addAlert({
+        msg: `Not type of ${format}`,
+        type: "failure",
+      });
     }
   };
 

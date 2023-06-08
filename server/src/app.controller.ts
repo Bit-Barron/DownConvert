@@ -1,13 +1,12 @@
-import { Body, Controller, Post, Res, UseInterceptors } from '@nestjs/common';
-import { AppService } from './app.service';
-import fs from 'fs';
-import path from 'path';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import axios from 'axios';
-import sharp, { FormatEnum } from 'sharp';
-import JSZip from 'jszip';
 import { FastifyReply } from 'fastify';
-import { FileInterceptor } from '@nestjs/platform-express';
 import ffmpeg from 'fluent-ffmpeg';
+import fs from 'fs';
+import JSZip from 'jszip';
+import path from 'path';
+import sharp, { FormatEnum } from 'sharp';
+import { AppService } from './app.service';
 
 @Controller('api')
 export class AppController {
@@ -58,23 +57,35 @@ export class AppController {
 
     return zipFileName;
   }
-  @Post('videos')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      dest: './tmp',
-    }),
-  )
-  async getVideoUrl(@Body() payload: { videos: Video[]; format: string }) {
-    const { videos, format } = payload;
 
-    const command = ffmpeg().input(videos).output('tmp.flv');
-    command.on('end', () => {
-      console.log('Video conversion complete');
-    });
-    command.on('error', (err) => {
-      console.log('error: ', err);
-    });
-    console.log(command);
-    return '';
+  // Videos endpoint
+
+  @Post('videos')
+  async getVideoUrl(
+    @Body() payload: { videos: Video[]; format: string },
+    @Res() reply: FastifyReply,
+  ) {
+    const { videos, format } = payload;
+    const outputFilename = `video.${format}`;
+    const outputPath = path.join(__dirname, outputFilename);
+
+    ffmpeg(videos)
+      .format(format)
+      .output(outputPath)
+      .on('end', () => {
+        const stream = fs.createReadStream(outputPath);
+        reply
+          .header('Content-Type', `video/${format}`)
+          .header(
+            'Content-Disposition',
+            `attachment; filename=${outputFilename}`,
+          )
+          .send(stream);
+      })
+      .on('error', (err) => {
+        console.log('Error during conversion:', err);
+        reply.status(500).send('Error during video conversion');
+      })
+      .run();
   }
 }

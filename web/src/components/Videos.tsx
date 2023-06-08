@@ -29,16 +29,19 @@ export const Videos: React.FC = () => {
   return (
     <>
       <VideoDownloader />
-      <div>
+
+      <div className="mt-10">
         {url ? (
-          <div className="mt-10">
+          <div>
             <video controls onClick={() => setUrl(url)}>
               <source src={url} />
             </video>
           </div>
         ) : (
           <div>
-            <h1 className="text-white font-bold text-2xl">Loading</h1>
+            <h1 className="text-white font-bold flex text-2xl h-screen justify-center items-center">
+              Loading....
+            </h1>
           </div>
         )}
       </div>
