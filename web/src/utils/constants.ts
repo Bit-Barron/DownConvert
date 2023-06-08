@@ -21,7 +21,7 @@ export const IMAGE_FORMATS = [
   "jxl",
 ] as const;
 
-export const VIDEO_FORMATS = ["orginal", "mp4", "avi", "mkv", "mov", "wmv", "webm"] as const;
+export const VIDEO_FORMATS = ["orginal", "aiff", "asf", "mp4", "mov", "gif", "webm"] as const;
 
 export type VideoFormat = (typeof VIDEO_FORMATS)[number];
 export type ImageFormat = (typeof IMAGE_FORMATS)[number];
