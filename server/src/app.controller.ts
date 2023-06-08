@@ -7,7 +7,7 @@ import sharp, { FormatEnum } from 'sharp';
 import JSZip from 'jszip';
 import { FastifyReply } from 'fastify';
 import { FileInterceptor } from '@nestjs/platform-express';
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 
 @Controller('api')
 export class AppController {
@@ -59,10 +59,22 @@ export class AppController {
     return zipFileName;
   }
   @Post('videos')
-  @UseInterceptors(FileInterceptor('video'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      dest: './tmp',
+    }),
+  )
   async getVideoUrl(@Body() payload: { videos: Video[]; format: string }) {
     const { videos, format } = payload;
 
-    ffmpeg(videos).output(format);
+    const command = ffmpeg().input(videos).output('tmp.flv');
+    command.on('end', () => {
+      console.log('Video conversion complete');
+    });
+    command.on('error', (err) => {
+      console.log('error: ', err);
+    });
+    console.log(command);
+    return '';
   }
 }

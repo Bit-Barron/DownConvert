@@ -14,6 +14,15 @@ export const VideoDownloader = () => {
       videos,
       format,
     });
+    const contentDisposition = response.headers["content-disposition"];
+    const blob = new Blob([response.data], { type: `video/${format}` }); // Change the MIME type to match your video format
+
+    if (downloadLinkRef.current) {
+      downloadLinkRef.current.href = URL.createObjectURL(blob);
+      downloadLinkRef.current.download = contentDisposition;
+      downloadLinkRef.current.click();
+      URL.revokeObjectURL(downloadLinkRef.current.href);
+    }
 
     console.log(response);
   };
