@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  server:
+    ports:
+      - 3000:3000
+    build:
+      context: server/
+      dockerfile: Dockerfile
