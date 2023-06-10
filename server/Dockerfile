@@ -5,8 +5,9 @@ RUN curl -fsSL -o /bin/pnpm "https://github.com/pnpm/pnpm/releases/download/v8.5
 
 FROM base AS dependencies
 WORKDIR /app
-COPY package.json ./
+COPY package.json yarn.lock ./
 RUN pnpm i
+RUN pnpm i -D @types/fastify
 
 FROM base AS build
 WORKDIR /app
