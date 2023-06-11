@@ -7,3 +7,23 @@ services:
     build:
       context: server/
       dockerfile: Dockerfile
+
+  traefik:
+    image: traefik:v2.4
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./letsencrypt:/letsencrypt
+
+    command:
+      - "--api.insecure=true" # Allow insecure API access (for demonstration purposes only)
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=<your-email>"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
