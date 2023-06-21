@@ -1,0 +1,1 @@
+chrome.webRequest.onCompleted.addListener(e=>{chrome.storage.local.set({[`${e.timeStamp}`]:e})},{urls:["<all_urls>"]},["responseHeaders","extraHeaders"]);chrome.webRequest.onBeforeRequest.addListener(function(e){chrome.storage.local.set({[`${e.timeStamp}`]:e})},{urls:["<all_urls>"]},[]);

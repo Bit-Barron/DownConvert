@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "DownConvert",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "permissions": [
+    "storage",
+    "webRequest",
+    "background",
+    "tabs",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "use_dynamic_url": true,
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "**/*",
+        "*"
+      ]
+    }
+  ]
+}
