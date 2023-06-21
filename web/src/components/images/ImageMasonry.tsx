@@ -59,7 +59,7 @@ export const ImageMasonry: React.FC = () => {
           <div
             onClick={() => setSelectedImage(item)}
             style={{
-              backgroundImage: `url(${item.url}?auto=compress&dpr=2&h=500&w=500)`,
+              backgroundImage: `url(${item.url})`,
             }}
             className={`${
               selectedImages.includes(item) ? "border-2 border-b" : ""
