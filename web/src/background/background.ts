@@ -14,7 +14,5 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 chrome.storage.local.clear(function () {
   const error = chrome.runtime.lastError;
-  if (error) {
-  }
   // do something more
 });
