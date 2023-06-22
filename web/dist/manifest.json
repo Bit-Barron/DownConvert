@@ -13,7 +13,7 @@
     "webRequest",
     "background",
     "tabs",
-    "https://*/*"
+    "activeTab"
   ],
   "background": {
     "service_worker": "service-worker-loader.js",

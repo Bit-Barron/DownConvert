@@ -12,7 +12,3 @@ chrome.webRequest.onBeforeRequest.addListener(
   { urls: ["<all_urls>"] },
   []
 );
-chrome.storage.local.clear(function () {
-  const error = chrome.runtime.lastError;
-  // do something more
-});
