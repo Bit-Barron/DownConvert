@@ -15,12 +15,13 @@ export const Images = () => {
       const uniqueImages = [
         ...new Map(imgs.map((item) => [item["url"], item])).values(),
       ];
+      console.log(uniqueImages);
 
       const images = uniqueImages.map(({ url }) => ({ url, height: 0 }));
 
       for (const image of images) {
         const img = new Image();
-        img.onload = () => upsertImage({ url: img.src, height: img.height });
+        img.onload = async() => await upsertImage({ url: img.src, height: img.height });
         img.src = image.url;
       }
     });

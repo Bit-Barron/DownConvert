@@ -54,19 +54,21 @@ export const ImageMasonry: React.FC = () => {
       className={styles.list}
       style={{ height: Math.max(...heights) }}
     >
-      {transitions((style, item) => (
-        <a.div style={style}>
-          <div
-            onClick={() => setSelectedImage(item)}
-            style={{
-              backgroundImage: `url(${item.url})`,
-            }}
-            className={`${
-              selectedImages.includes(item) && "border-2 border-b"
-            }`}
-          />
-        </a.div>
-      ))}
+      {transitions((style, item) => {
+        return (
+          <a.div style={style}>
+            <div
+              onClick={() => setSelectedImage(item)}
+              style={{
+                backgroundImage: `url(${item.url})`,
+              }}
+              className={`${
+                selectedImages.includes(item) && "border-2 border-b"
+              }`}
+            />
+          </a.div>
+        );
+      })}
     </div>
   );
 };
